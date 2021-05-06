@@ -22,7 +22,7 @@ class CustomerController extends Controller
     public function index()
     {
         $data['rows'] = Customer::all();
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
         return view('customer.index',compact('data'));
     }
 
@@ -33,7 +33,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
         return view('customer.create',compact('data'));
     }
 
@@ -65,7 +65,7 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
 
         $data['row'] = Customer::find($id);
         if (!$data['row']){

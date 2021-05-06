@@ -34,7 +34,8 @@ class HomeController extends Controller
 
         $diff = $date->diff($now)->format('%H:%I:%S');
 //        dd($diff);
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
+
 
         $data['available_parking'] = ParkingSlot::where('status','=', 0)->count();
         $data['total_parkingslots'] = ParkingSlot::count();

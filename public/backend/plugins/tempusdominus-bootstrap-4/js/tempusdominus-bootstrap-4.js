@@ -1069,7 +1069,7 @@ var DateTimePicker = function ($, moment) {
 
     _proto._getLastPickedDateIndex = function _getLastPickedDateIndex() {
       return this._dates.length - 1;
-    } //public
+    } //public_image
     ;
 
     _proto.getMoment = function getMoment(d) {
@@ -3110,7 +3110,7 @@ var TempusDominusBootstrap4 = function ($) {
       }
 
       return false;
-    } //public
+    } //public_image
     ;
 
     _proto2.hide = function hide() {

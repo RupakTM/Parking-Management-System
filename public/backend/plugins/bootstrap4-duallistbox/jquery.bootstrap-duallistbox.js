@@ -868,7 +868,7 @@
         }
       });
       // If the first parameter is a string and it doesn't start with an underscore or "contains" the `init`-function,
-      // treat this as a call to a public method.
+      // treat this as a call to a public_image method.
     } else if (typeof options === 'string' && options[0] !== '_' && options !== 'init') {
 
       // Cache the method call to make it possible to return a value
@@ -876,7 +876,7 @@
 
       this.each(function () {
         var instance = $.data(this, 'plugin_' + pluginName);
-        // Tests that there's already a plugin-instance and checks that the requested public method exists
+        // Tests that there's already a plugin-instance and checks that the requested public_image method exists
         if (instance instanceof BootstrapDualListbox && typeof instance[options] === 'function') {
           // Call the method of our plugin instance, and pass it the supplied arguments.
           returns = instance[options].apply(instance, Array.prototype.slice.call(args, 1));

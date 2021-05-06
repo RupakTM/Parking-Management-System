@@ -19,7 +19,7 @@ class ParkingSlotController extends Controller
     public function index()
     {
         $data['rows'] = ParkingSlot::all();
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
         return view('parkingslot.index',compact('data'));
     }
 
@@ -30,7 +30,7 @@ class ParkingSlotController extends Controller
      */
     public function create()
     {
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
         return view('parkingslot.create',compact('data'));
     }
 
@@ -61,7 +61,7 @@ class ParkingSlotController extends Controller
      */
     public function show($id)
     {
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
         $data['user'] = auth()->user();
         $data['row'] = ParkingSlot::find($id);
         if (!$data['row']){
@@ -79,7 +79,7 @@ class ParkingSlotController extends Controller
      */
     public function edit($id)
     {
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
         $data['row'] = ParkingSlot::find($id);
         if (!$data['row']){
             request()->session()->flash('error', 'Invalid request');

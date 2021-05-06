@@ -20,7 +20,7 @@ class StaffController extends Controller
     public function index()
     {
         $data['rows'] = Staff::all();
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
         return view('staff.index',compact('data'));
     }
 
@@ -31,7 +31,7 @@ class StaffController extends Controller
      */
     public function create()
     {
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
         return view('staff.create',compact('data'));
     }
 
@@ -69,7 +69,7 @@ class StaffController extends Controller
      */
     public function show($id)
     {
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
 
         $data['row'] = Staff::find($id);
         $created_user = $data['row']->created_by;
@@ -95,7 +95,7 @@ class StaffController extends Controller
      */
     public function edit($id)
     {
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
         $data['row'] = Staff::find($id);
         if (!$data['row']){
             request()->session()->flash('error', 'Invalid request');
@@ -160,7 +160,7 @@ class StaffController extends Controller
     }
 
     public function trash(){
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
         $data['rows'] = Staff::onlyTrashed()->orderby('deleted_at','desc')->get();
         return view('staff.trash',compact('data'));
     }

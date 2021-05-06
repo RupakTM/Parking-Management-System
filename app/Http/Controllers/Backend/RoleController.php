@@ -20,7 +20,7 @@ class RoleController extends Controller
     public function index()
     {
         $data['rows'] = Role::all();
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
         return view('role.index',compact('data'));
     }
 
@@ -31,7 +31,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
         return view('role.create',compact('data'));
     }
 
@@ -50,7 +50,7 @@ class RoleController extends Controller
 
     public function show($id)
     {
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
 
         $data['row'] = Role::find($id);
         $created_user = $data['row']->created_by;
@@ -70,7 +70,7 @@ class RoleController extends Controller
 
     public function edit($id)
     {
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
 
         $data['row'] = Role::find($id);
         if (!$data['row']){
@@ -113,7 +113,7 @@ class RoleController extends Controller
     }
 
     public function trash(){
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
         $data['rows'] = Role::onlyTrashed()->orderby('deleted_at','desc')->get();
         return view('role.trash',compact('data'));
     }

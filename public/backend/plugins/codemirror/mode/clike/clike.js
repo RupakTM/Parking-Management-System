@@ -274,14 +274,14 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
   var cppKeywords = "alignas alignof and and_eq audit axiom bitand bitor catch " +
   "class compl concept constexpr const_cast decltype delete dynamic_cast " +
   "explicit export final friend import module mutable namespace new noexcept " +
-  "not not_eq operator or or_eq override private protected public " +
+  "not not_eq operator or or_eq override private protected public_image " +
   "reinterpret_cast requires static_assert static_cast template this " +
   "thread_local throw try typeid typename using virtual xor xor_eq";
 
   var objCKeywords = "bycopy byref in inout oneway out self super atomic nonatomic retain copy " +
   "readwrite readonly strong weak assign typeof nullable nonnull null_resettable _cmd " +
   "@interface @implementation @end @protocol @encode @property @synthesize @dynamic @class " +
-  "@public @package @private @protected @required @optional @try @catch @finally @import " +
+  "@public_image @package @private @protected @required @optional @try @catch @finally @import " +
   "@selector @encode @defs @synchronized @autoreleasepool @compatibility_alias @available";
 
   var objCBuiltins = "FOUNDATION_EXPORT FOUNDATION_EXTERN NS_INLINE NS_FORMAT_FUNCTION " +
@@ -481,7 +481,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
     name: "clike",
     keywords: words("abstract assert break case catch class const continue default " +
                     "do else enum extends final finally for goto if implements import " +
-                    "instanceof interface native new package private protected public " +
+                    "instanceof interface native new package private protected public_image " +
                     "return static strictfp super switch synchronized this throw throws transient " +
                     "try volatile while @interface"),
     types: words("byte short int long float double boolean char void Boolean Byte Character Double Float " +
@@ -508,7 +508,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
     keywords: words("abstract as async await base break case catch checked class const continue" +
                     " default delegate do else enum event explicit extern finally fixed for" +
                     " foreach goto if implicit in interface internal is lock namespace new" +
-                    " operator out override params private protected public readonly ref return sealed" +
+                    " operator out override params private protected public_image readonly ref return sealed" +
                     " sizeof stackalloc static struct switch this throw try typeof unchecked" +
                     " unsafe using virtual void volatile while add alias ascending descending dynamic from get" +
                     " global group into join let orderby partial remove select set value var yield"),
@@ -656,7 +656,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
       "break continue object if else while do try when !in !is as? " +
 
       /*soft keywords*/
-      "file import where by get set abstract enum open inner override private public internal " +
+      "file import where by get set abstract enum open inner override private public_image internal " +
       "protected catch finally out final vararg reified dynamic companion constructor init " +
       "sealed field property receiver param sparam lateinit data inline noinline tailrec " +
       "external annotation crossinline const operator infix suspend actual expect setparam"

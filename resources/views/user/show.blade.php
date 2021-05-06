@@ -15,7 +15,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">View User</li>
+                            <li class="breadcrumb-item active">User Information</li>
                         </ol>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
-                        View Details
+                        User Information
                         <a href="{{route('user.index')}}" class="btn btn-success">
                             <i class="fa fa-list-alt" aria-hidden="true"></i>
                             List
@@ -68,7 +68,11 @@
                         <tr>
                             <th>Image</th>
                             <td>
-                                <img src="{{asset('uploads/images/user/'.$data['row']->image)}}" height="100px" width="100px">
+                                @if($data['row']->image)
+                                    <img src="{{asset('uploads/images/user/'.$data['row']->image)}}" height="100px" width="100px">
+                                @else
+                                    <img alt=" " src="{{asset('public_image/image_not_found.jpg')}}" height="100px" width="100px"/>
+                                @endif
                             </td>
                         </tr>
                         <tr>

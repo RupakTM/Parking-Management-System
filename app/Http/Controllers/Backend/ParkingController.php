@@ -21,7 +21,7 @@ class ParkingController extends Controller
 {
     function create(){
         $data['parkingslots'] = ParkingSlot::all();
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
         return view('parking.create',compact('data'));
     }
     public function store(ParkingRequest $request)
@@ -63,7 +63,7 @@ class ParkingController extends Controller
         $row = Parking::create($request->all());
         if ($row){
             $request->session()->flash('success', 'Car Added successfully');
-            $data['setting'] = Setting::find(3);
+            $data['setting'] = Setting::first();
             $data['receipt'] = Parking::find($row->id);
             return view('parking.parking_slip',compact('data'));
         } else{
@@ -74,13 +74,13 @@ class ParkingController extends Controller
     }
 
     function index(){
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
         $data['rows'] = Parking::all();
         return view('parking.index',compact('data'));
     }
 
     function show($id){
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
 
         $data['row'] = Parking::find($id);
         $updated_user = $data['row']->updated_by;
@@ -101,7 +101,7 @@ class ParkingController extends Controller
     }
 
     function edit(){
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
         $data['rows'] = Parking::all();
         return view('parking.edit',compact('data'));
     }
@@ -204,7 +204,7 @@ class ParkingController extends Controller
             }
 //            $data['row']->update($request->all());
 //            $request->session()->flash('success', 'Car exit successfully');
-            $data['setting'] = Setting::find(3);
+            $data['setting'] = Setting::first();
             $data['receipt'] = Parking::find($car_id);
             return view('parking.invoice',compact('data'));
         } else{
@@ -215,7 +215,7 @@ class ParkingController extends Controller
     }
 
     public function invoice(){
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
         $data['rows'] = Parking::all();
         return view('parking.invoice',compact('data'));
     }

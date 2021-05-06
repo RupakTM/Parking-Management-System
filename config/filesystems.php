@@ -35,11 +35,11 @@ return [
             'root' => storage_path('app'),
         ],
 
-        'public' => [
+        'public_image' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+            'root' => storage_path('app/public_image'),
             'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
+            'visibility' => 'public_image',
         ],
 
         's3' => [
@@ -66,7 +66,7 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('app/public'),
+        public_path('storage') => storage_path('app/public_image'),
     ],
 
 ];

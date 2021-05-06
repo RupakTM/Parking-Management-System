@@ -1,5 +1,5 @@
 /*! =======================================================
-                      VERSION  11.0.2              
+                      VERSION  11.0.2
 ========================================================= */
 "use strict";
 
@@ -838,7 +838,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 		/*************************************************
   				INSTANCE PROPERTIES/METHODS
   	- Any methods bound to the prototype are considered
-  part of the plugin's `public` interface
+  part of the plugin's `public_image` interface
   	**************************************************/
 		Slider.prototype = {
 			_init: function _init() {}, // NOTE: Must exist to support bridget
@@ -1075,7 +1075,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 
 			/******************************+
    				HELPERS
-   	- Any method that is not part of the public interface.
+   	- Any method that is not part of the public_image interface.
    - Place it underneath this comment block and write its signature like so:
    		_fnName : function() {...}
    	********************************/

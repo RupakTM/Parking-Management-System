@@ -318,7 +318,7 @@ temporary images load their data.
     $.plot.composeImages = composeImages;
 
     function init(plot) {
-        // used to extend the public API of the plot
+        // used to extend the public_image API of the plot
         plot.composeImages = composeImages;
     }
 

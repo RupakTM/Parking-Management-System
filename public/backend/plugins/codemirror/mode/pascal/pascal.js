@@ -29,7 +29,7 @@ CodeMirror.defineMode("pascal", function() {
     "dynamic enumerator experimental export external far far16 forward generic " +
     "helper implements index interrupt iocheck local message name near " +
     "nodefault noreturn nostackframe oldfpccall otherwise overload override " +
-    "pascal platform private protected public published read register " +
+    "pascal platform private protected public_image published read register " +
     "reintroduce result safecall saveregisters softfloat specialize static " +
     "stdcall stored strict unaligned unimplemented varargs virtual write");
   var atoms = {"null": true};

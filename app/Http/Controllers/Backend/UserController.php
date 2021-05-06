@@ -22,7 +22,7 @@ class UserController extends Controller
     public function index()
     {
         $data['rows'] = User::all();
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
         return view('user.index',compact('data'));
     }
 
@@ -33,7 +33,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
         $data['staffs'] = Staff::all();
         $data['roles'] = Role::all();
         return view('user.create',compact('data'));
@@ -58,7 +58,7 @@ class UserController extends Controller
         $user_id = Auth::id();
         $request->request->add(['created_by'=>$user_id]);
         //Hash value for password
-        $pw = Hash::make($request->file('password'));
+        $pw = Hash::make($request->input('password'));
         $request->request->add(['password'=>$pw]);
 
         $row = User::create($request->all());
@@ -78,7 +78,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
 
         $data['row'] = User::find($id);
 
@@ -108,7 +108,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
 
         $data['row'] = User::find($id);
         if (!$data['row']){
@@ -178,7 +178,7 @@ class UserController extends Controller
     }
 
     public function trash(){
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
         $data['rows'] = User::onlyTrashed()->orderby('deleted_at','desc')->get();
         return view('user.trash',compact('data'));
     }

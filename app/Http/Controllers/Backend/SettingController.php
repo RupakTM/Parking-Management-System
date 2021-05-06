@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class SettingController extends Controller
 {
     function edit(){
-        $data['setting'] = Setting::find(3);
+        $data['setting'] = Setting::first();
         if (!$data['setting']){
             request()->session()->flash('error', 'Invalid request');
             return redirect()->route('home');

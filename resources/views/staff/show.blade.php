@@ -72,7 +72,11 @@
                         <tr>
                             <th>Image</th>
                             <td>
-                                <img src="{{asset('uploads/images/staff/'.$data['row']->image)}}" height="100px" width="100px">
+                                @if($data['row']->image)
+                                    <img src="{{asset('uploads/images/staff/'.$data['row']->image)}}" height="100px" width="100px">
+                                @else
+                                    <img alt=" " src="{{asset('public_image/image_not_found.jpg')}}" height="100px" width="100px"/>
+                                @endif
                             </td>
                         </tr>
                         <tr>

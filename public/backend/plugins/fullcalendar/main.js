@@ -131,7 +131,7 @@ var FullCalendar = (function (exports) {
         O(null, node);
     }
 
-    // no public types yet. when there are, export from:
+    // no public_image types yet. when there are, export from:
     // import {} from './api-type-deps'
     var EventSourceApi = /** @class */ (function () {
         function EventSourceApi(context, internalEventSource) {
@@ -2687,7 +2687,7 @@ var FullCalendar = (function (exports) {
         return copy;
     }
 
-    // no public types yet. when there are, export from:
+    // no public_image types yet. when there are, export from:
     // import {} from './api-type-deps'
     var ViewApi = /** @class */ (function () {
         function ViewApi(type, getCurrentData, dateEnv) {
@@ -2840,7 +2840,7 @@ var FullCalendar = (function (exports) {
             return this.currentDataManager.dispatch(action);
         };
         Object.defineProperty(CalendarApi.prototype, "view", {
-            get: function () { return this.getCurrentData().viewApi; } // for public API
+            get: function () { return this.getCurrentData().viewApi; } // for public_image API
             ,
             enumerable: false,
             configurable: true
@@ -2880,7 +2880,7 @@ var FullCalendar = (function (exports) {
         CalendarApi.prototype.off = function (handlerName, handler) {
             this.currentDataManager.emitter.off(handlerName, handler);
         };
-        // not meant for public use
+        // not meant for public_image use
         CalendarApi.prototype.trigger = function (handlerName) {
             var _a;
             var args = [];
@@ -3042,7 +3042,7 @@ var FullCalendar = (function (exports) {
         };
         // Date Selection / Event Selection / DayClick
         // -----------------------------------------------------------------------------------------------------------------
-        // this public method receives start/end dates in any format, with any timezone
+        // this public_image method receives start/end dates in any format, with any timezone
         // NOTE: args were changed from v3
         CalendarApi.prototype.select = function (dateOrObj, endDate) {
             var selectionInput;
@@ -3070,7 +3070,7 @@ var FullCalendar = (function (exports) {
                 triggerDateSelect(selection, null, state);
             }
         };
-        // public method
+        // public_image method
         CalendarApi.prototype.unselect = function (pev) {
             var state = this.getCurrentData();
             if (state.dateSelection) {
@@ -6730,7 +6730,7 @@ var FullCalendar = (function (exports) {
         var endMarker = framingRange.end;
         var instanceStarts = [];
         while (dayMarker < endMarker) {
-            var instanceStart 
+            var instanceStart
             // if everyday, or this particular day-of-week
             = void 0;
             // if everyday, or this particular day-of-week
@@ -8050,7 +8050,7 @@ var FullCalendar = (function (exports) {
             };
             var classNames = [CLASS_NAME].concat(getDayClassNames(dateMeta, theme), props.extraClassNames || []);
             var text = dateEnv.format(date, props.dayHeaderFormat);
-            var hookProps = __assign(__assign(__assign(__assign({ // TODO: make this public?
+            var hookProps = __assign(__assign(__assign(__assign({ // TODO: make this public_image?
                 date: date }, dateMeta), { view: viewApi }), props.extraHookProps), { text: text });
             return (createElement(RenderHook, { hookProps: hookProps, classNames: options.dayHeaderClassNames, content: options.dayHeaderContent, defaultContent: renderInner, didMount: options.dayHeaderDidMount, willUnmount: options.dayHeaderWillUnmount }, function (rootElRef, customClassNames, innerElRef, innerContent) { return (createElement("th", __assign({ ref: rootElRef, className: classNames.concat(customClassNames).join(' '), colSpan: props.colSpan }, props.extraDataAttrs),
                 createElement("div", { className: "fc-scrollgrid-sync-inner" },
@@ -9064,7 +9064,7 @@ var FullCalendar = (function (exports) {
             return _this;
         }
         Object.defineProperty(Calendar.prototype, "view", {
-            get: function () { return this.currentData.viewApi; } // for public API
+            get: function () { return this.currentData.viewApi; } // for public_image API
             ,
             enumerable: false,
             configurable: true
@@ -11869,7 +11869,7 @@ var FullCalendar = (function (exports) {
                     /*
                     known bug: events that are force to be list-item but span multiple days still take up space in later columns
                     */
-                    nodes.push(createElement("div", { className: 'fc-daygrid-event-harness' + (isAbsolute ? ' fc-daygrid-event-harness-abs' : ''), key: instanceId, 
+                    nodes.push(createElement("div", { className: 'fc-daygrid-event-harness' + (isAbsolute ? ' fc-daygrid-event-harness-abs' : ''), key: instanceId,
                         // in print mode when in mult cols, could collide
                         ref: isMirror ? null : this.segHarnessRefs.createRef(instanceId + ':' + seg.firstCol), style: {
                             visibility: isInvisible ? 'hidden' : '',
@@ -13168,7 +13168,7 @@ var FullCalendar = (function (exports) {
             if (!slatCoords) {
                 return null;
             }
-            return segs.map(function (seg, i) { return (createElement(NowIndicatorRoot, { isAxis: false, date: date, 
+            return segs.map(function (seg, i) { return (createElement(NowIndicatorRoot, { isAxis: false, date: date,
                 // key doesn't matter. will only ever be one
                 key: i }, function (rootElRef, classNames, innerElRef, innerContent) { return (createElement("div", { ref: rootElRef, className: ['fc-timegrid-now-indicator-line'].concat(classNames).join(' '), style: { top: slatCoords.computeDateTop(seg.start, date) } }, innerContent)); })); });
         };

@@ -1532,7 +1532,7 @@ function getAlpha(string) {
 // generators
 function hexString(rgba, a) {
    var a = (a !== undefined && rgba.length === 3) ? a : rgba[3];
-   return "#" + hexDouble(rgba[0]) 
+   return "#" + hexDouble(rgba[0])
               + hexDouble(rgba[1])
               + hexDouble(rgba[2])
               + (
@@ -11590,7 +11590,7 @@ var Scale = core_element.extend({
 
 		me.afterUpdate();
 
-		// TODO(v3): remove minSize as a public property and return value from all layout boxes. It is unused
+		// TODO(v3): remove minSize as a public_image property and return value from all layout boxes. It is unused
 		// make maxWidth and maxHeight private
 		return me.minSize;
 	},

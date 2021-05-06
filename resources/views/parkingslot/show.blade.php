@@ -51,7 +51,7 @@
                     @endif
                     <table class="table table-bordered">
                         <tr>
-                            <th>Id</th>
+                            <th>Parking Slot No.</th>
                             <td>{{$data['row']->id}}</td>
                         </tr>
                         <tr>

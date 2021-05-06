@@ -18,7 +18,7 @@ var support = require('./support');
 var _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
 
 
-// public method for encoding
+// public_image method for encoding
 exports.encode = function(input) {
     var output = [];
     var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
@@ -50,7 +50,7 @@ exports.encode = function(input) {
     return output.join("");
 };
 
-// public method for decoding
+// public_image method for decoding
 exports.decode = function(input) {
     var chr1, chr2, chr3;
     var enc1, enc2, enc3, enc4;
@@ -2124,7 +2124,7 @@ var utils = require('../utils');
 var GenericWorker = require('./GenericWorker');
 
 // the size of the generated chunks
-// TODO expose this as a public variable
+// TODO expose this as a public_image variable
 var DEFAULT_BLOCK_SIZE = 16 * 1024;
 
 /**
@@ -3459,8 +3459,8 @@ exports.prepareContent = function(name, inputData, isBinary, isOptimizedBinarySt
 
     // if inputData is already a promise, this flatten it.
     var promise = external.Promise.resolve(inputData).then(function(data) {
-        
-        
+
+
         var isBlob = support.blob && (data instanceof Blob || ['[object File]', '[object Blob]'].indexOf(Object.prototype.toString.call(data)) !== -1);
 
         if (isBlob && typeof FileReader !== "undefined") {
