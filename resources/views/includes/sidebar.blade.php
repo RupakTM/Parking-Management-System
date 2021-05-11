@@ -2,7 +2,11 @@
 <aside class="main-sidebar sidebar-color">
     <!-- Brand Logo -->
     <a href="{{route('home')}}" class="brand-link navbar-orange">
-        <img src="{{asset('uploads/images/settings/'.$data['setting']->logo)}}" alt="Logo" class="brand-image img-circle" style="opacity: .8">
+        @if($data['setting']->logo)
+            <img src="{{asset('uploads/images/settings/'.$data['setting']->logo)}}" alt="Logo" class="brand-image img-circle" style="opacity: .8">
+        @else
+            <img src="{{asset('uploads/images/settings/'.$data['setting']->logo)}}" alt="Logo" class="brand-image img-circle" style="opacity: .8">
+        @endif
         <span class="brand-text font-weight-light custom-text-color-black"><strong>{{$data['setting']->name}}</strong></span>
     </a>
 
@@ -57,6 +61,23 @@
                     </a>
                 </li>
                 <li class="nav-header"><b>ADMIN SECTION</b></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa fa-cog"></i>
+                        <p>
+                            Basic Setup
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('module.index')}}" class="nav-link">
+                                <i class="fas fa-tasks nav-icon"></i>
+                                <p>Module</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-user"></i>

@@ -27,7 +27,7 @@ class StaffRequest extends FormRequest
             'name'=>'required',
             'email' =>'required',
             'address' => 'required',
-            'phone'=>'required',
+            'phone'=>'required|numeric|digits:10',
             'image' => 'mimes:png,jpg|max:2048',
         ];
 

@@ -15,20 +15,22 @@ class CreateParkingsTable extends Migration
     {
         Schema::create('parkings', function (Blueprint $table) {
             $table->id();
-            $table->string('car_no');
+            $table->string('car_no',100);
             $table->unsignedBigInteger('parking_slot_no');
             $table->string('customer_name',50);
-            $table->dateTime('bill_no')->nullable();
+            $table->string('bill_no',50)->nullable();
             $table->dateTime('entry_time')->nullable();
             $table->dateTime('exit_time')->nullable();
             $table->boolean('status')->default(0);
-            $table->double('hour',3,2)->nullable();
+            $table->time('hour')->nullable();
             $table->double('price',5,2)->nullable();
             $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('updated_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
             $table->foreign('parking_slot_no')->references('id')->on('parking_slots');
             $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('updated_by')->references('id')->on('users');
         });
     }
 

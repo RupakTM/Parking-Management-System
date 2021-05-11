@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnsToSettingsTable extends Migration
+class CreateModulesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,15 @@ class AddColumnsToSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::table('settings', function (Blueprint $table) {
-            $table->unsignedBigInteger('created_by')->after('price_per_hour');
-            $table->unsignedBigInteger('updated_by')->nullable()->after('created_at');
+        Schema::create('modules', function (Blueprint $table) {
+            $table->id();
+            $table->string('name',50);
+            $table->string('route',100);
+            $table->boolean('status')->default(0);
+            $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->softDeletes();
+            $table->timestamps();
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');
         });
@@ -28,8 +34,6 @@ class AddColumnsToSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::table('settings', function (Blueprint $table) {
-            $table->dropColumn(['created_by','updated_by']);
-        });
+        Schema::dropIfExists('modules');
     }
 }

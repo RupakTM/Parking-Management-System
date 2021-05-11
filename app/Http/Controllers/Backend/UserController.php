@@ -47,6 +47,12 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
+
+        //user name from staff
+        $staff_id = $request->input('staff_id');
+        $name = Staff::where('id',$staff_id)->value('name');
+        $request->request->add(['name'=>$name]);
+
         //Image Upload
         $file = $request->file('image_file');
         if($request->hasfile("image_file")) {
@@ -61,13 +67,14 @@ class UserController extends Controller
         $pw = Hash::make($request->input('password'));
         $request->request->add(['password'=>$pw]);
 
+
         $row = User::create($request->all());
         if ($row){
             $request->session()->flash('success', 'User created successfully');
         } else{
             $request->session()->flash('error', 'User creation failed');
         }
-        return redirect()->route('user.index');
+//        return redirect()->route('user.index');
     }
 
     /**

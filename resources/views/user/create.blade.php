@@ -49,9 +49,14 @@
                     <form action="{{route('user.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" name="name" id="name" value="{{old('name')}}">
-                            @error('name')
+                            <label for="staff_id">Staff Name</label>
+                            <select name="staff_id" id="staff_id" class="form-control">
+                                <option value="">Select Staff</option>
+                                @foreach($data['staffs'] as $staff)
+                                    <option value="{{$staff->id}}">{{$staff->name}}</option>
+                                @endforeach
+                            </select>
+                            @error('staff_id')
                             <p class="text-danger">{{$message}}</p>
                             @enderror
                         </div>
@@ -80,18 +85,6 @@
                             <label for="image_file">Image</label>
                             <input type="file" class="form-control" name="image_file" id="image_file">
                             @error('image_file')
-                            <p class="text-danger">{{$message}}</p>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="staff_id">Staff Name</label>
-                            <select name="staff_id" id="staff_id" class="form-control">
-                                <option value="">Select Staff</option>
-                                @foreach($data['staffs'] as $staff)
-                                    <option value="{{$staff->id}}">{{$staff->name}}</option>
-                                @endforeach
-                            </select>
-                            @error('staff_id')
                             <p class="text-danger">{{$message}}</p>
                             @enderror
                         </div>
@@ -125,3 +118,4 @@
     </div>
     <!-- /.content-wrapper -->
 @endsection
+

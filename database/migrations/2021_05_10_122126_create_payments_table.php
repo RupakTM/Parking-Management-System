@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCreatedByToUsersTable extends Migration
+class CreatePaymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,15 @@ class AddCreatedByToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('created_by')->nullable()->after('remember_token');
+        Schema::create('payments', function (Blueprint $table) {
+            $table->id();
+            $table->string('customer_name',50);
+            $table->string('invoice_no',50);
+            $table->double('amount',5,2);
+            $table->dateTime('payment_date');
+            $table->unsignedBigInteger('created_by');
             $table->foreign('created_by')->references('id')->on('users');
+            $table->timestamps();
         });
     }
 
@@ -26,8 +32,6 @@ class AddCreatedByToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('created_by');
-        });
+        Schema::dropIfExists('payments');
     }
 }

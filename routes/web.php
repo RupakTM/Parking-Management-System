@@ -9,6 +9,8 @@ use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\StaffController;
 use App\Http\Controllers\Backend\CustomerController;
+use App\Http\Controllers\Backend\ModuleController;
+
 use App\Http\Controllers\Backend\DashboardController;
 
 
@@ -82,6 +84,9 @@ Route::middleware(['web','auth'])->group(function(){
 
     //Customer Route
     Route::resource('customer',CustomerController::class);
+
+    //Module Route
+    Route::resource('module',ModuleController::class);
 
 
 
