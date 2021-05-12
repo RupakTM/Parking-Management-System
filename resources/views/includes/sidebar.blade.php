@@ -72,7 +72,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{route('module.index')}}" class="nav-link">
-                                <i class="fas fa-tasks nav-icon"></i>
+                                <i class="fa fa-dot-circle nav-icon"></i>
                                 <p>Module</p>
                             </a>
                         </li>
@@ -134,15 +134,15 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('user.create')}}" class="nav-link">
-                                <i class="fa fa-plus nav-icon"></i>
-                                <p>Add</p>
+                            <a href="{{route('user.index')}}" class="nav-link">
+                                <i class="fa fa-dot-circle nav-icon"></i>
+                                <p>User</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('user.index')}}" class="nav-link">
-                                <i class="fa fa-list-alt nav-icon"></i>
-                                <p>List</p>
+                            <a href="{{route('permission.index')}}" class="nav-link">
+                                <i class="fa fa-dot-circle nav-icon"></i>
+                                <p>Permission</p>
                             </a>
                         </li>
                     </ul>

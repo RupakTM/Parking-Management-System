@@ -46,12 +46,7 @@
                     </span>
                     @enderror
                 </div>
-                <div class="form-group">
-                    <div class="custom-control custom-checkbox small customRememberMe">
-                        <input type="checkbox" class="custom-control-input" id="remember" name="remember" id="remember">
-                        <label class="custom-control-label" for="remember">Remember Me</label>
-                    </div>
-                </div>
+
                 <button type="submit" class="btn btn-info btnLogin" name="btnLogin" id="btnLogin" value="login">Login</button>
             </form>
     </div>

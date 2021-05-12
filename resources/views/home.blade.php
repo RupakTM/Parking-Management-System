@@ -7,6 +7,9 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
+            @if(Session::has('invalid_access'))
+                <p class="alert alert-danger">{{ Session::get('invalid_access') }}</p>
+            @endif
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','Role Management')
+@section('title','Permission Management')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -10,12 +10,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Role Management</h1>
+                        <h1>Permission Management</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Role List</li>
+                            <li class="breadcrumb-item active">Permissions</li>
                         </ol>
                     </div>
                 </div>
@@ -29,11 +29,11 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
-                        Role List
-                        <a href="{{route('role.create')}}" class="btn btn-success">
+                        Permissions
+                        <a href="{{route('permission.create')}}" class="btn btn-success">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add</a>
-                        <a href="{{route('role.trash')}}" class="btn btn-danger">
-                            <i class="fa fa-trash" aria-hidden="true"></i> Trash</a>
+{{--                        <a href="{{route('module.trash')}}" class="btn btn-danger">--}}
+{{--                            <i class="fa fa-trash" aria-hidden="true"></i> Trash</a>--}}
                     </h3>
 
                     <div class="card-tools">
@@ -55,14 +55,18 @@
                     <table class="table table-bordered">
                         <tr>
                             <th>SN</th>
-                            <th>Role Name</th>
+                            <th>Module</th>
+                            <th>Name</th>
+                            <th>Route</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
-                        @foreach($data['rows'] as $i => $row)
+                        @forelse($data['rows'] as $i => $row)
                             <tr>
                                 <td>{{$i+1}}</td>
+                                <td>{{$row->module->name}}</td>
                                 <td>{{$row->name}}</td>
+                                <td>{{$row->route}}</td>
                                 <td>
                                     @if($row->status == 1)
                                         <span class="text-success">Active</span>
@@ -72,23 +76,22 @@
                                 </td>
                                 <td>
                                     <a href="{{route('role.show',$row->id)}}" class="btn btn-info">
-                                        <i class="fa fa-eye" aria-hidden="true"></i> View
-                                    </a>
+                                        <i class="fa fa-eye" aria-hidden="true"></i> View</a>
                                     <a href="{{route('role.edit',$row->id)}}" class="btn btn-warning">
-                                        <i class="fas fa-edit" aria-hidden="true"></i> Edit
-                                    </a>
+                                        <i class="fas fa-edit" aria-hidden="true"></i> Edit</a>
                                     <form action="{{route('role.destroy',$row->id)}}" method="post" class="d-inline">
                                         @csrf
                                         <input type="hidden" name="_method" value="delete">
                                         <button type="submit" class="btn btn-danger">
                                             <i class="fa fa-minus-circle" aria-hidden="true"></i> Delete</button>
                                     </form>
-                                    <a href="{{route('role.assign_permission',$row->id)}}" class="btn btn-success">
-                                        <i class="fa fa-check" aria-hidden="true"></i> Assign
-                                    </a>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="5" class="text text-danger">Permissions not found</td>
+                            </tr>
+                        @endforelse
                     </table>
                 </div>
                 <!-- /.card-body -->

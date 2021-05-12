@@ -3,15 +3,18 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ModuleRequest;
+use App\Http\Requests\PermissionRequest;
 use App\Http\Requests\RoleRequest;
 use App\Models\Module;
+use App\Models\Permission;
 use App\Models\Role;
 use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RoleController extends Controller
+class PermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,9 +23,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $data['rows'] = Role::all();
+        $data['rows'] = Permission::all();
         $data['setting'] = Setting::first();
-        return view('role.index',compact('data'));
+        return view('permission.index',compact('data'));
     }
 
     /**
@@ -33,20 +36,21 @@ class RoleController extends Controller
     public function create()
     {
         $data['setting'] = Setting::first();
-        return view('role.create',compact('data'));
+        $data['modules'] = Module::all();
+        return view('permission.create',compact('data'));
     }
 
-    public function store(RoleRequest $request)
+    public function store(PermissionRequest $request)
     {
         $user_id = Auth::id();
         $request->request->add(['created_by'=>$user_id]);
-        $row = Role::create($request->all());
+        $row = Permission::create($request->all());
         if ($row){
-            $request->session()->flash('success', 'Role created successfully');
+            $request->session()->flash('success', 'Permission created successfully');
         } else{
-            $request->session()->flash('error', 'Role creation failed');
+            $request->session()->flash('error', 'Permission creation failed');
         }
-        return redirect()->route('role.index');
+        return redirect()->route('permission.index');
     }
 
     public function show($id)
@@ -81,7 +85,7 @@ class RoleController extends Controller
         return view('role.edit',compact('data'));
     }
 
-    public function update(RoleRequest $request, $id)
+    public function update(PermissionRequest $request, $id)
     {
         $user_id = Auth::id();
         $request->request->add(['updated_by'=>$user_id]);
@@ -138,37 +142,5 @@ class RoleController extends Controller
             request()->session()->flash('error', 'Role delete failed');
         }
         return redirect()->route('role.trash');
-    }
-
-    function assignPermission($roleId){
-        $data['setting'] = Setting::first();
-
-        $data['row'] = Role::find($roleId);
-
-        //get permission id
-        $data['permissions'] = $data['row']->permissions()->get();
-        $assigned_permission = [];
-        foreach ($data['permissions'] as $permission){
-            array_push($assigned_permission,$permission->id);
-        }
-        $data['assigned_permission'] = $assigned_permission;
-
-        $created_user = $data['row']->created_by;
-        $data['create'] = User::find($created_user);
-        $updated_user = $data['row']->updated_by;
-        if (isset($updated_user)) {
-            $data['update'] = User::find($updated_user);
-        } else{
-            $data['update'] = '';
-        }
-        $data['modules'] = Module::all();
-        return view('role.assign_permission',compact('data'));
-    }
-
-    function postPermission(Request $request){
-        $data['setting'] = Setting::first();
-        $data['row'] = Role::find($request->input('role_id'));
-        $data['row']->permissions()->sync($request->input('permission_id'));
-        return redirect()->route('role.index');
     }
 }

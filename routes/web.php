@@ -10,6 +10,8 @@ use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\StaffController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\ModuleController;
+use App\Http\Controllers\Backend\PermissionController;
+
 
 use App\Http\Controllers\Backend\DashboardController;
 
@@ -37,7 +39,7 @@ Auth::routes([
 Route::middleware(['web','auth'])->group(function(){
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::redirect('/', '/home');
-
+    Route::middleware(['role_permission'])->group(function(){
 //    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
     //Parking Slot Route
@@ -71,6 +73,10 @@ Route::middleware(['web','auth'])->group(function(){
     Route::put('setting/{id}', [SettingController::class, 'update'])->name('setting.update');
 
     //Role Route
+    //ACL
+    Route::get('role/assign_permission/{role_id}', [RoleController::class, 'assignPermission'])->name('role.assign_permission');
+    Route::post('role/post_permission', [RoleController::class, 'postPermission'])->name('role.post_permission');
+    // ACL ends
     Route::get('role/trash', [RoleController::class, 'trash'])->name('role.trash');
     Route::post('role/{id}/restore', [RoleController::class,'restore'])->name('role.restore');
     Route::delete('role/{id}/force-delete',[RoleController::class,'forceDelete'])->name('role.forceDelete');
@@ -88,6 +94,9 @@ Route::middleware(['web','auth'])->group(function(){
     //Module Route
     Route::resource('module',ModuleController::class);
 
+    //Permission Route
+    Route::resource('permission',PermissionController::class);
+    });
 
 
 
