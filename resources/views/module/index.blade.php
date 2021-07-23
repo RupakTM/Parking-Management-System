@@ -73,16 +73,10 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{route('role.show',$row->id)}}" class="btn btn-info">
+                                    <a href="{{route('module.show',$row->id)}}" class="btn btn-info">
                                         <i class="fa fa-eye" aria-hidden="true"></i> View</a>
-                                    <a href="{{route('role.edit',$row->id)}}" class="btn btn-warning">
+                                    <a href="{{route('module.edit',$row->id)}}" class="btn btn-warning">
                                         <i class="fas fa-edit" aria-hidden="true"></i> Edit</a>
-                                    <form action="{{route('role.destroy',$row->id)}}" method="post" class="d-inline">
-                                        @csrf
-                                        <input type="hidden" name="_method" value="delete">
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fa fa-minus-circle" aria-hidden="true"></i> Delete</button>
-                                    </form>
                                 </td>
                             </tr>
                         @empty

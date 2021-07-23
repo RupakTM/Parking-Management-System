@@ -30,7 +30,10 @@
                 <div class="card-header">
                     <h3 class="card-title">
                         View Details
-                        <a href="{{route('role.index')}}" class="btn btn-success">List</a>
+                        <a href="{{route('role.index')}}" class="btn btn-success">
+                            <i class="fa fa-list-alt" aria-hidden="true"></i>
+                            List
+                        </a>
                     </h3>
 
                     <div class="card-tools">

@@ -30,7 +30,9 @@
                 <div class="card-header">
                     <h3 class="card-title">
                         Edit User
-                        <a href="{{route('user.index')}}" class="btn btn-success">List</a>
+                        <a href="{{route('user.index')}}" class="btn btn-success">
+                            <i class="fa fa-list-alt" aria-hidden="true"></i> List
+                        </a>
                     </h3>
 
                     <div class="card-tools">
@@ -49,7 +51,8 @@
                         @csrf
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" name="name" id="name" value="{{$data['row']->name}}">
+                            <input type="text" class="form-control" name="name" id="name" value="{{$data['row']->name}}" readonly>
+                            <input type="hidden" name="staff_id" id="staff_id" value="{{$data['row']->staff_id}}">
                             @error('name')
                             <p class="text-danger">{{$message}}</p>
                             @enderror
@@ -80,6 +83,22 @@
                             <img src="{{asset('uploads/images/user/'.$data['row']->image)}}" height="100px" width="100px">
                             <input type="file" class="form-control" name="image_file" id="image_file">
                             @error('image_file')
+                            <p class="text-danger">{{$message}}</p>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="role_id">Role</label>
+                            <select name="role_id" id="role_id" class="form-control">
+                                <option value="">Select Role</option>
+                                @foreach($data['roles'] as $role)
+                                    @if($role->id==$data['row']->role_id)
+                                        <option value="{{$role->id}}"selected>{{$role->name}}</option>
+                                    @else
+                                        <option value="{{$role->id}}">{{$role->name}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                            @error('role_id')
                             <p class="text-danger">{{$message}}</p>
                             @enderror
                         </div>

@@ -16,7 +16,11 @@
 
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="{{asset('uploads/images/user/1614519135_person icon.png')}}" width="32px" height="32px" style="border-radius:50%">
+                @if(auth()->user()->image)
+                    <img src="{{asset('uploads/images/user/'.auth()->user()->image)}}" width="32px" height="32px" style="border-radius:50%">
+                @else
+                    <img src="{{asset('uploads/images/user/1614519135_person icon.png')}}" width="32px" height="32px" style="border-radius:50%">
+                @endif
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

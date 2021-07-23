@@ -53,6 +53,13 @@ class UserController extends Controller
         $name = Staff::where('id',$staff_id)->value('name');
         $request->request->add(['name'=>$name]);
 
+        //Email
+        $email = $request->input('email');
+        if($email==null){
+            $staffEmail = Staff::where('id',$staff_id)->value('email');
+            $request->request->add(['email'=>$staffEmail]);
+        }
+
         //Image Upload
         $file = $request->file('image_file');
         if($request->hasfile("image_file")) {
@@ -74,7 +81,7 @@ class UserController extends Controller
         } else{
             $request->session()->flash('error', 'User creation failed');
         }
-//        return redirect()->route('user.index');
+        return redirect()->route('user.index');
     }
 
     /**
@@ -116,7 +123,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $data['setting'] = Setting::first();
-
+        $data['roles'] = Role::all();
         $data['row'] = User::find($id);
         if (!$data['row']){
             request()->session()->flash('error', 'Invalid request');
@@ -135,6 +142,7 @@ class UserController extends Controller
     public function update(UserRequest $request, $id)
     {
         $data['row'] = User::find($id);
+//        dd($data['row']);
         if (!$data['row']){
             request()->session()->flash('error', 'Invalid request');
             return redirect()->route('user.edit');
@@ -151,9 +159,9 @@ class UserController extends Controller
                 $file->move(public_path('uploads/images/user'), $fileName);
                 $request->request->add(['image' => $fileName]);
             }
+
             //Hash value for password
-            $password = $request->file('password');
-            $pw = Hash::make('$password');
+            $pw = Hash::make($request->input('password'));
             $request->request->add(['password'=>$pw]);
             $data['row']->update($request->all());
             $request->session()->flash('success', 'User updated successfully');

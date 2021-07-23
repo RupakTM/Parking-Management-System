@@ -9,6 +9,7 @@ use App\Models\Staff;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class StaffController extends Controller
 {
@@ -130,6 +131,14 @@ class StaffController extends Controller
                 $file->move(public_path('uploads/images/staff'), $fileName);
                 $request->request->add(['image' => $fileName]);
             }
+            //Store Data To user Table
+            $staff_name = $request->input('name');
+            DB::table('users')
+                ->where('staff_id',$id)
+                ->update([
+                    'name' => $staff_name,
+                ]);
+            //user data stored
             $data['row']->update($request->all());
             $request->session()->flash('success', 'Staff updated successfully');
         } else{

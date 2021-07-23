@@ -11,6 +11,8 @@ use App\Http\Controllers\Backend\StaffController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\ModuleController;
 use App\Http\Controllers\Backend\PermissionController;
+use App\Http\Controllers\Backend\PaymentController;
+
 
 
 use App\Http\Controllers\Backend\DashboardController;
@@ -91,11 +93,15 @@ Route::middleware(['web','auth'])->group(function(){
     //Customer Route
     Route::resource('customer',CustomerController::class);
 
+    //Payment Route
+        Route::resource('payment',PaymentController::class);
     //Module Route
     Route::resource('module',ModuleController::class);
 
     //Permission Route
-    Route::resource('permission',PermissionController::class);
+        Route::resource('permission',PermissionController::class);
+
+
     });
 
 

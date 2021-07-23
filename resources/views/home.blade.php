@@ -1,7 +1,6 @@
 @extends('layouts.master')
 
 @section('title','Dashboard Page')
-
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">

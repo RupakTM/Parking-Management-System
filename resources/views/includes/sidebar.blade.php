@@ -5,7 +5,7 @@
         @if($data['setting']->logo)
             <img src="{{asset('uploads/images/settings/'.$data['setting']->logo)}}" alt="Logo" class="brand-image img-circle" style="opacity: .8">
         @else
-            <img src="{{asset('uploads/images/settings/'.$data['setting']->logo)}}" alt="Logo" class="brand-image img-circle" style="opacity: .8">
+            <img src="{{asset('public_images/logo.png')}}" alt="Logo" class="brand-image img-circle" style="opacity: .8">
         @endif
         <span class="brand-text font-weight-light custom-text-color-black"><strong>{{$data['setting']->name}}</strong></span>
     </a>
@@ -15,7 +15,11 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{asset('uploads/images/user/1614519135_person icon.png')}}" class="img-circle elevation-2" alt="User Image">
+                @if(auth()->user()->image)
+                    <img src="{{asset('uploads/images/user/'.auth()->user()->image)}}" class="img-circle elevation-2" alt="User Image">
+                @else
+                    <img src="{{asset('uploads/images/user/1614519135_person icon.png')}}" class="img-circle elevation-2" alt="User Image">
+                @endif
             </div>
             <div class="info">
                 <a href="{{route('user.show',auth()->user()->id)}}" class="d-block custom-text-color-black">{{auth()->user()->name}}</a>
@@ -31,7 +35,7 @@
                     <a href="{{route('home')}}" class="nav-link">
                         <i class="av-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Dasboard
+                            Dashboard
                         </p>
                     </a>
                 </li>
@@ -63,17 +67,35 @@
                 <li class="nav-header"><b>ADMIN SECTION</b></li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-cog"></i>
+                        <i class="nav-icon fa fa-users"></i>
                         <p>
-                            Basic Setup
+                            User Management
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{route('module.index')}}" class="nav-link">
-                                <i class="fa fa-dot-circlewe nav-icon"></i>
+                                <i class="fa fa-dot-circle nav-icon"></i>
                                 <p>Module</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('permission.index')}}" class="nav-link">
+                                <i class="fa fa-dot-circle nav-icon"></i>
+                                <p>Permission</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('role.index')}}" class="nav-link">
+                                <i class="fa fa-dot-circle nav-icon"></i>
+                                <p>Role</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('user.index')}}" class="nav-link">
+                                <i class="fa fa-dot-circle nav-icon"></i>
+                                <p>User</p>
                             </a>
                         </li>
                     </ul>
@@ -125,52 +147,6 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-users"></i>
-                        <p>
-                            User Management
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{route('user.index')}}" class="nav-link">
-                                <i class="fa fa-dot-circle nav-icon"></i>
-                                <p>User</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('permission.index')}}" class="nav-link">
-                                <i class="fa fa-dot-circle nav-icon"></i>
-                                <p>Permission</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-tasks"></i>
-                        <p>
-                            Role Management
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{route('role.create')}}" class="nav-link">
-                                <i class="fa fa-plus nav-icon"></i>
-                                <p>Add</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('role.index')}}" class="nav-link">
-                                <i class="fa fa-list-alt nav-icon"></i>
-                                <p>List</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
                     <a href="{{route('customer.index')}}" class="nav-link">
                         <i class="nav-icon fa fa-user-circle" aria-hidden="true"></i>
                         <p>
@@ -183,6 +159,14 @@
                         <i class="nav-icon fas fa-fw fa-cog"></i>
                         <p>
                             Setting
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('payment.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-fw fa-cog"></i>
+                        <p>
+                            Payments
                         </p>
                     </a>
                 </li>

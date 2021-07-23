@@ -45,7 +45,6 @@ class CustomerController extends Controller
      */
     public function store(CustomerRequest $request)
     {
-        dd($request);
 //        $user_id = Auth::id();
 //        $request->request->add(['created_by'=>$user_id]);
 //        $row = Customer::create($request->all());

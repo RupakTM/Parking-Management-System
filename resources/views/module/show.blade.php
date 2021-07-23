@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','Role Management')
+@section('title','Module Management')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -10,12 +10,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Role Management</h1>
+                        <h1>Module Management</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">View Role</li>
+                            <li class="breadcrumb-item active">View Module</li>
                         </ol>
                     </div>
                 </div>
@@ -30,7 +30,9 @@
                 <div class="card-header">
                     <h3 class="card-title">
                         View Details
-                        <a href="{{route('role.index')}}" class="btn btn-success">List</a>
+                        <a href="{{route('module.index')}}" class="btn btn-success">
+                            <i class="fa fa-list" aria-hidden="true"></i> List
+                        </a>
                     </h3>
 
                     <div class="card-tools">
@@ -51,8 +53,12 @@
                     @endif
                     <table class="table table-bordered">
                         <tr>
-                            <th>Role Name</th>
+                            <th>Module Name</th>
                             <td>{{$data['row']->name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Route</th>
+                            <td>{{$data['row']->route}}</td>
                         </tr>
                         <tr>
                             <th>Status</th>

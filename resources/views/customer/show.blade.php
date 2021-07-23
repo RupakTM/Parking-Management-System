@@ -69,13 +69,19 @@
                             <th>Created at</th>
                             <td>{{$data['row']->created_at}}</td>
                         </tr>
+                        <tr>
+                            <th>Updated at</th>
+                            <td>
+                                @if($data['row']->updated_at == '')
+                                    -
+                                @else
+                                    {{$data['row']->updated_at}}
+                                @endif
+                            </td>
+                        </tr>
                     </table>
                 </div>
                 <!-- /.card-body -->
-                <div class="card-footer">
-                    Footer
-                </div>
-                <!-- /.card-footer-->
             </div>
             <!-- /.card -->
 

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','Parking Management')
+@section('title','Payment Management')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -10,12 +10,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Parking Management</h1>
+                        <h1>Payment Management</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Car List</li>
+                            <li class="breadcrumb-item active">Payment Details</li>
                         </ol>
                     </div>
                 </div>
@@ -24,14 +24,12 @@
 
         <!-- Main content -->
         <section class="content">
+
+            <!-- Default box -->
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
-                        Parking List
-                        <a href="{{route('parking.create')}}" class="btn btn-success">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
-                            Add
-                        </a>
+                        Payment Details
                     </h3>
 
                     <div class="card-tools">
@@ -50,45 +48,34 @@
                     @if(Session::has('error'))
                         <p class="alert alert-danger">{{ Session::get('error') }}</p>
                     @endif
+                    <input type="date"/>
+                    <input type="date"/>
+                        <input type="submit" class="btn btn-success" value="submit"/>
                     <table class="table table-bordered">
                         <tr>
                             <th>SN</th>
-                            <th>Car Number</th>
-                            <th>Parking Slot No.</th>
                             <th>Customer Name</th>
-                            <th>Entry Time</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th>Invoice Number</th>
+                            <th>Amount</th>
+                            <th>Payment Date</th>
+                            <th>Created By</th>
                         </tr>
                         @forelse($data['rows'] as $i => $row)
                             <tr>
                                 <td>{{$i+1}}</td>
-                                <td>{{$row->car_no}}</td>
-                                <td>Slot {{$row->parking_slot_no}}</td>
                                 <td>{{$row->customer_name}}</td>
-                                <td>{{$row->entry_time}}</td>
-                                <td>
-                                    @if($row->status == 1)
-                                        <span class="text-success">Active</span>
-                                    @else
-                                        <span class="text-danger">De Active</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    <a href="{{route('parking.show',$row->id)}}" class="btn btn-info">
-                                        <i class="fa fa-eye" aria-hidden="true"></i> View</a>
-                                    <a href="{{route('parking.edit',$row->id)}}" class="btn btn-warning">
-                                        <i class="fas fa-edit" aria-hidden="true"></i> Edit</a>
-                                </td>
+                                <td>{{$row->invoice_no}}</td>
+                                <td>{{$row->amount}}</td>
+                                <td>{{$row->payment_date}}</td>
+                                <td>{{$row->createdBy->name}}</td>
                             </tr>
-                        @empty
-                            <tr>
-                                <td colspan="7" class="text text-danger">Parking list not found</td>
-                            </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="text text-danger">Record not found</td>
+                                </tr>
                         @endforelse
                     </table>
                 </div>
-                <!-- /.card-body -->
             </div>
             <!-- /.card -->
 

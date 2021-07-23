@@ -13,12 +13,13 @@ class Permission extends Model
     protected $table = 'permissions';
     protected $fillable = ['module_id','name','route','status','created_by','updated_by'];
 
-    function module(){
-        return $this->belongsTo(Module::class,'module_id');
-    }
 
     function roles(){
         return $this->belongsToMany(Role::class);
+    }
+
+    function modules(){
+        return $this->hasMany(Module::class);
     }
 
     function createdBy(){
@@ -27,7 +28,4 @@ class Permission extends Model
     function updatedBy(){
         return $this->belongsTo(User::class,'updated_by');
     }
-//    function permissions(){
-//        return $this->hasMany(Permission::class);
-//    }
 }

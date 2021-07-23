@@ -58,6 +58,7 @@ class ParkingController extends Controller
             'name' => $customer_name,
             'car_no' => $car_number,
             'created_by' => $user_id,
+            'created_at' => $entry,
         ]);
 
         $row = Parking::create($request->all());
@@ -140,11 +141,9 @@ class ParkingController extends Controller
             //get minute from total time
             $minute = Carbon::parse($total_hour)->minute;
             //get price from setting table
-            $price = Setting::select('price_per_hour')->where('id','=', 3)->value('price_per_hour');
-//            dd($price);
+            $price = Setting::select('price_per_hour')->first()->value('price_per_hour');
             $min = 60;
             $minute_price = $price / $min ;
-//            dd($minute_price);
 
             //Calculation of total amount
             if ($hour == 0){
@@ -154,25 +153,33 @@ class ParkingController extends Controller
                     $total_amount = ceil(($hour+1) * $price);
                 } else{
                     $total_amount = ceil($hour * $price);
-                }
-            }
-//            dd($total_amount);
-            //set bill_no
-            $bill_record = Parking::select('bill_no')->limit(1)->orderby('updated_at','desc')->value('bill_no'); //get last bill record
-            $bill = explode('-', $bill_record);
+                } //innner else ends
+            } //outer if ends
 
-            //check first day in a year
-            $Date = date("md");
-            if ($Date=="0101"){
+            //SET bill_no
+            $bill_record = Parking::select('bill_no')->limit(1)->orderby('updated_at','desc')->value('bill_no'); //get last bill record
+            //check bill record
+            if ($bill_record){
+                $bill = explode('-', $bill_record);
+
+                //check first day in a year
+                $Date = date("md");
+                if ($Date=="0101"){
+                    $InvoiceNumber = date('Y').'-0001';
+                } else {
+                    //increase 1 with last invoice number
+                    $updated_digit = $bill[1] + 1;
+                    $last_digit = substr(str_repeat(0, 4).$updated_digit, -4); //Add leading zero
+                    $InvoiceNumber = $bill[0].'-'. $last_digit;
+                } //inner else ends
+            }//outer if ends
+            else{
+                //if it is first transaction
                 $InvoiceNumber = date('Y').'-0001';
-            } else {
-                //increase 1 with last invoice number
-                $updated_digit = $bill[1] + 1;
-                $last_digit = substr(str_repeat(0, 4).$updated_digit, -4); //Add leading zero
-                $InvoiceNumber = $bill[0].'-'. $last_digit;
-            }
-//            dd($InvoiceNumber);
-            //SET Data To PARKING Table
+            } //outer else ends
+
+
+            //Store Data To parking Table
             DB::table('parkings')
                 ->where('id',$car_id)
                 ->update([
@@ -184,8 +191,9 @@ class ParkingController extends Controller
                     'updated_at'=> $exitTime,
                     'updated_by' => $user_id,
                 ]);
+            //parking data stored
 
-            //SET Data To PAYMENT Table
+            //Store Data To payment Table
             DB::table('payments')
                 ->insert([
                     'customer_name' => $customer,
@@ -195,6 +203,7 @@ class ParkingController extends Controller
                     'created_by' => $user_id,
                     'created_at' => $exitTime,
                 ]);
+            //payment data stored
 
             //SET status of parking slot as available
             $parking_slot = $data['row']->parking_slot_no;
@@ -202,8 +211,7 @@ class ParkingController extends Controller
             if ($parking_status){
                 $parking_status->update(['status'=>0]);
             }
-//            $data['row']->update($request->all());
-//            $request->session()->flash('success', 'Car exit successfully');
+            //Status of parking slot set as available
             $data['setting'] = Setting::first();
             $data['receipt'] = Parking::find($car_id);
             return view('parking.invoice',compact('data'));

@@ -31,9 +31,8 @@
                     <h3 class="card-title">
                         Permissions
                         <a href="{{route('permission.create')}}" class="btn btn-success">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add</a>
-{{--                        <a href="{{route('module.trash')}}" class="btn btn-danger">--}}
-{{--                            <i class="fa fa-trash" aria-hidden="true"></i> Trash</a>--}}
+                            <i class="fa fa-plus" aria-hidden="true"></i> Add
+                        </a>
                     </h3>
 
                     <div class="card-tools">
@@ -55,7 +54,6 @@
                     <table class="table table-bordered">
                         <tr>
                             <th>SN</th>
-                            <th>Module</th>
                             <th>Name</th>
                             <th>Route</th>
                             <th>Status</th>
@@ -64,7 +62,6 @@
                         @forelse($data['rows'] as $i => $row)
                             <tr>
                                 <td>{{$i+1}}</td>
-                                <td>{{$row->module->name}}</td>
                                 <td>{{$row->name}}</td>
                                 <td>{{$row->route}}</td>
                                 <td>
@@ -75,11 +72,11 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{route('role.show',$row->id)}}" class="btn btn-info">
+                                    <a href="{{route('permission.show',$row->id)}}" class="btn btn-info">
                                         <i class="fa fa-eye" aria-hidden="true"></i> View</a>
-                                    <a href="{{route('role.edit',$row->id)}}" class="btn btn-warning">
+                                    <a href="{{route('permission.edit',$row->id)}}" class="btn btn-warning">
                                         <i class="fas fa-edit" aria-hidden="true"></i> Edit</a>
-                                    <form action="{{route('role.destroy',$row->id)}}" method="post" class="d-inline">
+                                    <form action="{{route('permission.destroy',$row->id)}}" method="post" class="d-inline">
                                         @csrf
                                         <input type="hidden" name="_method" value="delete">
                                         <button type="submit" class="btn btn-danger">

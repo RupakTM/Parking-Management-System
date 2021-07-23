@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','Role Management')
+@section('title','Permission Management')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -10,12 +10,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Role Management</h1>
+                        <h1>Permission Management</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Edit Role</li>
+                            <li class="breadcrumb-item active">Edit Permission</li>
                         </ol>
                     </div>
                 </div>
@@ -29,8 +29,10 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
-                        Edit Role
-                        <a href="{{route('role.index')}}" class="btn btn-success">List</a>
+                        Edit Permission
+                        <a href="{{route('permission.index')}}" class="btn btn-success">
+                            <i class="fa fa-list" aria-hidden="true"></i> List
+                        </a>
                     </h3>
 
                     <div class="card-tools">
@@ -43,10 +45,22 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="{{route('role.update',$data['row']->id)}}" method="POST">
+                    <form action="{{route('permission.update',$data['row']->id)}}" method="POST">
                         <input type="hidden" name="_method" value="PUT">
                         <input type="hidden" name="id" value="{{$data['row']->id}}">
                         @csrf
+                        <div class="form-group">
+                            <label for="name">Module Name</label>
+                            <select name="module_id" id="module_id" class="form-control">
+                                <option value="">Select Module</option>
+                                @foreach($data['modules'] as $module)
+                                    <option value="{{$module->id}}">{{$module->name}}</option>
+                                @endforeach
+                            </select>
+                            @error('name')
+                            <p class="text-danger">{{$message}}</p>
+                            @enderror
+                        </div>
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" class="form-control" name="name" id="name" value="{{$data['row']->name}}">
@@ -70,10 +84,6 @@
                     </form>
                 </div>
                 <!-- /.card-body -->
-                <div class="card-footer">
-                    Footer
-                </div>
-                <!-- /.card-footer-->
             </div>
             <!-- /.card -->
 

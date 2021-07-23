@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class PaymentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,6 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'staff_id' =>'required|not_in:0',
-            'password' => 'min:6|required_with:confirm_password|same:confirm_password',
-            'image' => 'mimes:png,jpg|max:2048',
 
         ];
     }
