@@ -42,38 +42,42 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    @if(Session::has('success'))
-                        <p class="alert alert-success">{{ Session::get('success') }}</p>
-                    @endif
-                    @if(Session::has('error'))
-                        <p class="alert alert-danger">{{ Session::get('error') }}</p>
-                    @endif
-                    <input type="date"/>
-                    <input type="date"/>
-                        <input type="submit" class="btn btn-success" value="submit"/>
-                    <table class="table table-bordered">
+                        <form action="{{route('payment.search')}}" method="POST">
+                            @csrf
+                            <input type="date" name="date_from" id="date_from"/>
+                            <input type="date" name="date_to" id="date_to"/>
+                            <input type="submit" class="btn btn-info" value="search"/>
+                        </form>
+                    <table class="table table-bordered" name="payment_info" id="payment_info" style="margin-top: 25px;">
                         <tr>
                             <th>SN</th>
                             <th>Customer Name</th>
                             <th>Invoice Number</th>
-                            <th>Amount</th>
+                            <th>Amount(in Rs.)</th>
                             <th>Payment Date</th>
                             <th>Created By</th>
                         </tr>
-                        @forelse($data['rows'] as $i => $row)
-                            <tr>
-                                <td>{{$i+1}}</td>
-                                <td>{{$row->customer_name}}</td>
-                                <td>{{$row->invoice_no}}</td>
-                                <td>{{$row->amount}}</td>
-                                <td>{{$row->payment_date}}</td>
-                                <td>{{$row->createdBy->name}}</td>
-                            </tr>
-                            @empty
+                        @if(isset($data['payments']))
+                            @forelse($data['payments'] as $i => $row)
                                 <tr>
-                                    <td colspan="6" class="text text-danger">Record not found</td>
+                                    <td>{{$i+1}}</td>
+                                    <td>{{$row->customer_name}}</td>
+                                    <td>{{$row->invoice_no}}</td>
+                                    <td>{{$row->amount}}</td>
+                                    <td>{{$row->payment_date}}</td>
+                                    <td>{{$row->created_by}}</td>
+{{--                                    <td>{{$row->createdBy->name}}</td>--}}
                                 </tr>
-                        @endforelse
+                                @empty
+                                    <tr>
+                                        <td colspan="6" class="text text-danger">Record not found</td>
+                                    </tr>
+                            @endforelse
+                        @else
+                            <tr>
+                                <td colspan="6" class="text text-danger"></td>
+                            </tr>
+                        @endif
                     </table>
                 </div>
             </div>
@@ -84,3 +88,13 @@
     </div>
     <!-- /.content-wrapper -->
 @endsection
+
+{{--@section('js')--}}
+{{--    <script>--}}
+{{--        function showTable() {--}}
+{{--            var lTable = document.getElementById("payment_info");--}}
+{{--            lTable.style.display = (lTable.style.display == "table") ? "block" : "table";--}}
+{{--        }--}}
+{{--    </script>--}}
+{{--@endsection--}}
+

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PaymentRequest;
 use App\Http\Requests\SettingRequest;
 use App\Models\Payment;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
 {
@@ -17,48 +19,26 @@ class PaymentController extends Controller
         $data['setting'] = Setting::first();
         return view('payment.index',compact('data'));
     }
-    function edit(){
-        $data['setting'] = Setting::first();
-        if (!$data['setting']){
-            request()->session()->flash('error', 'Invalid request');
-            return redirect()->route('home');
-        }
-        return view('setting.edit',compact('data'));
-    }
 
-    public function update(SettingRequest $request,$id)
+    public function search(PaymentRequest $request)
     {
-        $data['row'] = Setting::find($id);
-        if (!$data['row']){
-            request()->session()->flash('error', 'Invalid request');
-            return redirect()->route('setting.edit');
-        }
-        if ($data['row']){
-            //User Id
-            $user_id = Auth::id();
-            $request->request->add(['updated_by'=>$user_id]);
-            //Logo Upload
-            $file = $request->file('logo_file');
-            //check file
-            if($request->hasfile("logo_file")) {
-                $fileName = time() . '_' . $file->getClientOriginalName();
-                $file->move(public_path('uploads/images/settings'), $fileName);
-                $request->request->add(['logo' => $fileName]);
-            }
-            //Fav Icon Upload
-            $fav = $request->file('fav_file');
-            //check file
-            if($request->hasfile("fav_file")) {
-                $fav_img = time() . '_' . $fav->getClientOriginalName();
-                $fav->move(public_path('uploads/images/settings'), $fav_img);
-                $request->request->add(['fav_icon' => $fav_img]);
-            }
-            $data['row']->update($request->all());
-            $request->session()->flash('success', 'Setting updated successfully');
-        } else{
-            $request->session()->flash('error', 'Setting update failed');
-        }
-        return redirect()->route('setting.edit');
+
+        $data['setting'] = Setting::first();
+
+        $date_from = $request->input('date_from');
+        $date_to = $request->input('date_to');
+
+        //Store Data To payment Table
+
+        //payment data stored
+
+        $data['payments'] = DB::table('payments')
+            ->select("*")
+            ->whereBetween('payment_date', [$date_from, $date_to])
+            ->get();
+//        dd($data['payments']);
+
+        return view('payment.index',compact('data'));
     }
 
 

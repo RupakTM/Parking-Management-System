@@ -164,7 +164,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{route('payment.index')}}" class="nav-link">
-                        <i class="nav-icon fas fa-fw fa-cog"></i>
+                        <i class="nav-icon fa fa-money-bill-alt"></i>
                         <p>
                             Payments
                         </p>

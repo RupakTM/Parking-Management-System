@@ -94,6 +94,7 @@ Route::middleware(['web','auth'])->group(function(){
     Route::resource('customer',CustomerController::class);
 
     //Payment Route
+        Route::post('payment/search', [PaymentController::class, 'search'])->name('payment.search');
         Route::resource('payment',PaymentController::class);
     //Module Route
     Route::resource('module',ModuleController::class);
