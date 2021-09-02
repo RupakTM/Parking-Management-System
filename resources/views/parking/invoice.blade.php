@@ -76,7 +76,7 @@
                                 </tr>
                                 <tr>
                                     <td>Alloted Parking Slot:</td>
-                                    <td>{{$data['receipt']->parking_slot_no}}</td>
+                                    <td>{{$data['parkingslot_number']->number}}</td>
                                 </tr>
                                 <tr>
                                     <td>Entry Time:</td>

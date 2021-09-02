@@ -44,8 +44,8 @@
                 <div class="card-body">
                         <form action="{{route('payment.search')}}" method="POST">
                             @csrf
-                            <input type="date" name="date_from" id="date_from"/>
-                            <input type="date" name="date_to" id="date_to"/>
+                            <input type="datetime-local" name="date_from" id="date_from"/>
+                            <input type="datetime-local" name="date_to" id="date_to"/>
                             <input type="submit" class="btn btn-info" value="search"/>
                         </form>
                     <table class="table table-bordered" name="payment_info" id="payment_info" style="margin-top: 25px;">

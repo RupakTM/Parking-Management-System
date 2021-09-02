@@ -10,7 +10,7 @@ class ParkingSlot extends Model
     use HasFactory;
 
     protected $table = 'parking_slots';
-    protected $fillable = ['status','created_by','updated_by'];
+    protected $fillable = ['number','status','created_by','updated_by'];
 
     function user(){
         return $this->belongsTo(User::class);

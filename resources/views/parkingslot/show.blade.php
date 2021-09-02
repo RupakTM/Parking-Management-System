@@ -52,7 +52,7 @@
                     <table class="table table-bordered">
                         <tr>
                             <th>Parking Slot No.</th>
-                            <td>{{$data['row']->id}}</td>
+                            <td>{{$data['row']->number}}</td>
                         </tr>
                         <tr>
                             <th>Status</th>

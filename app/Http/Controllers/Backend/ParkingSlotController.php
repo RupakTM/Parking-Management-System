@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ParkingSlotRequest;
+use App\Models\Parking;
 use App\Models\ParkingSlot;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -11,11 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ParkingSlotController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $data['rows'] = ParkingSlot::all();
@@ -23,23 +20,19 @@ class ParkingSlotController extends Controller
         return view('parkingslot.index',compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $data['setting'] = Setting::first();
+        $data['last_id'] = ParkingSlot::orderBy('id','DESC')->first();
+//        dd($data['last_id']);
+//        $data['last_number'] = ParkingSlot::orderBy('number','DESC')->first();
+//        if ($data['last_number'] == null){
+//            $data['last_number']->number = 1;
+//        }
         return view('parkingslot.create',compact('data'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(ParkingSlotRequest $request)
     {
         $user_id = Auth::id();
@@ -53,12 +46,7 @@ class ParkingSlotController extends Controller
         return redirect()->route('parkingslot.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         $data['setting'] = Setting::first();
@@ -71,12 +59,7 @@ class ParkingSlotController extends Controller
         return view('parkingslot.show',compact('data'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         $data['setting'] = Setting::first();
@@ -88,13 +71,7 @@ class ParkingSlotController extends Controller
         return view('parkingslot.edit',compact('data'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(ParkingSlotRequest $request, $id)
     {
         $data['row'] = ParkingSlot::find($id);
@@ -111,14 +88,25 @@ class ParkingSlotController extends Controller
         return redirect()->route('parkingslot.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        //
+        $data['row'] = ParkingSlot::find($id);
+        $data['last_id'] = ParkingSlot::orderBy('id','DESC')->first();
+//        dd($data['last']->id);
+        if ($data['row']){
+            if ($data['row']->id == $data['last_id']->id) {
+                if ($data['row']->delete()) {
+                    request()->session()->flash('success', 'Parking slot deleted successfully');
+                } else {
+                    request()->session()->flash('error', 'Parking slot delete failed');
+                }
+            }else{
+                request()->session()->flash('error', 'Invalid request');
+            }
+        } else{
+            request()->session()->flash('error', 'Invalid request');
+        }
+        return redirect()->route('parkingslot.index');
     }
 }

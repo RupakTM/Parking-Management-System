@@ -15,6 +15,7 @@ class CreateParkingSlotsTable extends Migration
     {
         Schema::create('parking_slots', function (Blueprint $table) {
             $table->id();
+            $table->integer('number');
             $table->boolean('status')->default(0);
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by')->nullable();

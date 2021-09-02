@@ -52,13 +52,13 @@
                     @endif
                     <table class="table table-bordered">
                         <tr>
-                            <th>SN</th>
+                            <th>Parking Slot No.</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
                         @foreach($data['rows'] as $i => $row)
                             <tr>
-                                <td>{{$i+1}}</td>
+                                <td>{{$row->number}}</td>
                                 <td>
                                     @if($row->status == 1)
                                         <span class="text-success">Active</span>
@@ -73,9 +73,12 @@
                                     <a href="{{route('parkingslot.edit',$row->id)}}" class="btn btn-warning">
                                         <i class="fas fa-edit" aria-hidden="true"></i> Edit</a>
                                     </a>
-                                    <a href="" class="btn btn-danger">
-                                        <i class="fa fa-minus-circle" aria-hidden="true"></i> Delete
-                                    </a>
+                                    <form action="{{route('parkingslot.destroy',$row->id)}}" method="post" class="d-inline">
+                                        @csrf
+                                        <input type="hidden" name="_method" value="delete">
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa fa-minus-circle" aria-hidden="true"></i> Delete</button>
+                                    </form>
 
                                     {{--                                    <form action="{{route('category.destroy',$row->id)}}" method="post">--}}
 {{--                                        @csrf--}}

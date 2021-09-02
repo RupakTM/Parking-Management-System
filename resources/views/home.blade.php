@@ -74,6 +74,9 @@
 
                 </div>
                 <!-- /.row -->
+                <div class="row">
+                    Hello
+                </div>
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->

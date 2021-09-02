@@ -25,4 +25,7 @@ class Parking extends Model
     function updatedBy(){
         return $this->belongsTo(User::class,'updated_by');
     }
+    function parkingslotNumber(){
+        return $this->hasOne(ParkingSlot::class,'number');
+    }
 }

@@ -16,11 +16,7 @@ use Illuminate\Support\Facades\Auth;
 
 class PermissionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $data['rows'] = Permission::all();
@@ -28,11 +24,6 @@ class PermissionController extends Controller
         return view('permission.index',compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $data['setting'] = Setting::first();

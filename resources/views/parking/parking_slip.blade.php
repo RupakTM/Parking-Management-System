@@ -75,7 +75,7 @@
                                     </tr>
                                 </table>
                                 <div>
-                                    <span class="grey">{{$data['receipt']->parking_slot_no}}</span>
+                                    <span class="grey">{{$data['parkingslot_number']->number}}</span>
                                 </div>
                             </div>
                             {{-- Main Content Ends--}}

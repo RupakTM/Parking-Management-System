@@ -75,12 +75,12 @@
                                     <div class="parking-buttons">
                                         @foreach($data['parkingslots'] as $parkingslot)
                                             @if($parkingslot->status == 0)
-                                                <button type="button" class="btn btn-info" name="slot_{{$parkingslot->id}}" id="slot_{{$parkingslot->id}}" value="{{$parkingslot->id}}">
-                                                    Slot {{$parkingslot->id}}
+                                                <button type="button" class="btn btn-info" name="slot_{{$parkingslot->number}}" id="slot_{{$parkingslot->number}}" value="{{$parkingslot->number}}">
+                                                    Slot {{$parkingslot->number}}
                                                 </button>
                                             @else
-                                                <button type="button" disabled class="btn btn-danger" name="slot_{{$parkingslot->id}}" id="slot_{{$parkingslot->id}}" value="{{$parkingslot->id}}">
-                                                    Slot {{$parkingslot->id}}
+                                                <button type="button" disabled class="btn btn-danger" name="slot_{{$parkingslot->name}}" id="slot_{{$parkingslot->name}}" value="{{$parkingslot->name}}">
+                                                    Slot {{$parkingslot->number}}
                                                 </button>
                                             @endif
                                         @endforeach

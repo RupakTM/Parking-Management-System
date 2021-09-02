@@ -50,7 +50,7 @@
                         <input type="hidden" name="id" value="{{$data['row']->id}}">
                         @csrf
                         <div class="form-group">
-                            <label for="name">Parking Slot Number: {{$data['row']->id}}</label>
+                            <label for="name">Parking Slot Number: {{$data['row']->number}}</label>
                         </div>
                         <div class="form-group">
                             <label for="status">Status</label>
