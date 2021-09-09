@@ -65,3 +65,65 @@ span.grey {
     width: 90px;
 }
 
+
+/* Hover message for search button*/
+
+#iconmessage {
+    position: relative;
+    display: inline-block;
+}
+
+#iconmessage .messagehover {
+    font-family: 'Raleway', sans-serif;
+    font-size:10px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    visibility: hidden;
+    width: 150px;
+    background-color: rgb(222, 226, 230);
+    color: rgb(80, 80, 80);
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the iconmessage */
+    position: absolute;
+    z-index: 1;
+    top:-5px;
+    left:110%;
+}
+
+#iconmessage:hover .messagehover {
+    visibility: visible;
+}
+
+
+/*#iconmessage span {*/
+/*    font-family: 'Raleway', sans-serif;*/
+/*    font-size:10px;*/
+/*    font-weight: 400;*/
+/*    letter-spacing: 1px;*/
+/*    bottom: 0;*/
+/*    left: 47px;*/
+/*    line-height: 38px;*/
+/*    overflow: hidden;*/
+/*    padding: 0;*/
+/*    position: absolute;*/
+/*    white-space: nowrap;*/
+/*    width: 0;*/
+
+/*    !* CSS3 Transition: *!*/
+/*    -webkit-transition: 0.50s;*/
+/*    !* Future proofing (these do not work yet): *!*/
+/*    -moz-transition: 0.50s;*/
+/*    transition: 0.50s;*/
+/*}*/
+/*#iconmessage button:hover span{ width:auto; padding:0 30px;overflow:visible; }*/
+/*#iconmessage button:hover{text-decoration:none;}*/
+/*#iconmessage button span{*/
+/*    background-color:#fff;*/
+/*    color:#3d4f0c;*/
+/*}*/
+
+/* hover message ends */
+

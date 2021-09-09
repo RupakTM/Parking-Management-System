@@ -68,7 +68,7 @@ class PermissionController extends Controller
     public function edit($id)
     {
         $data['setting'] = Setting::first();
-
+        $data['modules'] = Module::all();
         $data['row'] = Permission::find($id);
         if (!$data['row']){
             request()->session()->flash('error', 'Invalid request');
@@ -79,6 +79,7 @@ class PermissionController extends Controller
 
     public function update(PermissionRequest $request, $id)
     {
+        dd($request);
         $user_id = Auth::id();
         $request->request->add(['updated_by'=>$user_id]);
         $data['row'] = Permission::find($id);

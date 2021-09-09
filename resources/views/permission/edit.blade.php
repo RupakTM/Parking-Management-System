@@ -24,7 +24,6 @@
 
         <!-- Main content -->
         <section class="content">
-
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
@@ -37,7 +36,7 @@
 
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                            <i class="fas fa-minus"></i>s
+                            <i class="fas fa-minus"></i>
                         </button>
                         <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
                             <i class="fas fa-times"></i>
@@ -54,7 +53,11 @@
                             <select name="module_id" id="module_id" class="form-control">
                                 <option value="">Select Module</option>
                                 @foreach($data['modules'] as $module)
-                                    <option value="{{$module->id}}">{{$module->name}}</option>
+                                    @if($module->id == $data['row']->module_id)
+                                        <option value="{{$module->id}}" selected>{{$module->name}}</option>
+                                    @else
+                                        <option value="{{$module->id}}">{{$module->name}}</option>
+                                    @endif
                                 @endforeach
                             </select>
                             @error('name')

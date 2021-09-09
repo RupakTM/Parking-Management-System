@@ -9,6 +9,22 @@
             <a href="{{route('home')}}" class="nav-link">Home</a>
         </li>
     </ul>
+    <form action="{{route('payment.search')}}" method="POST" class="form-inline ml-3">
+        @csrf
+        <div class="input-group input-group-sm">
+            <input class="form-control form-control-navbar" type="search" name="searchBill" id="searchBill" placeholder="Search" aria-label="Search">
+            <div class="input-group-append" id="iconmessage">
+                <button class="btn btn-navbar" type="submit">
+                    <i class="fa fa-info">
+                        <span class="messagehover">
+                            Search by invoice number.
+                            For example, type: 2021-0001</span>
+                    </i>
+                </button>
+
+            </div>
+        </div>
+    </form>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <div class="topbar-divider d-none d-sm-block"></div>

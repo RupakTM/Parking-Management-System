@@ -20,6 +20,6 @@ class Module extends Model
         return $this->belongsTo(User::class,'updated_by');
     }
     function permissions(){
-        return $this->hasOne(Permission::class);
+        return $this->hasMany(Permission::class);
     }
 }

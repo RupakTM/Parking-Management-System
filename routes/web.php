@@ -95,7 +95,10 @@ Route::middleware(['web','auth'])->group(function(){
 
     //Payment Route
         Route::post('payment/search', [PaymentController::class, 'search'])->name('payment.search');
+        Route::post('payment/report', [PaymentController::class, 'report'])->name('payment.report');
+
         Route::resource('payment',PaymentController::class);
+
     //Module Route
     Route::resource('module',ModuleController::class);
 

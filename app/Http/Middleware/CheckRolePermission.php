@@ -27,8 +27,8 @@ class CheckRolePermission
             }
         }
         if ($access == false){
-//            request()->session()->flash('invalid_access', 'Access Denied');
-//            return redirect()->route('home');
+            request()->session()->flash('invalid_access', 'Access Denied');
+            return redirect()->route('home');
         }
 
         return $next($request);

@@ -25,6 +25,25 @@ class PaymentController extends Controller
 
         $data['setting'] = Setting::first();
 
+        $bill_no = $request->input('searchBill');
+        //Store Data To payment Table
+
+        //payment data stored
+
+        $data['payments'] = DB::table('payments')
+            ->select("*")
+            ->where('invoice_no', $bill_no)
+            ->get();
+//        dd($data['payments']);
+
+        return view('payment.searchinformation',compact('data'));
+    }
+
+    public function report(PaymentRequest $request)
+    {
+
+        $data['setting'] = Setting::first();
+
         $date_from = $request->input('date_from');
         $date_to = $request->input('date_to');
 

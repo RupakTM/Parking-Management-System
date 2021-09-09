@@ -42,12 +42,6 @@
                     </div>
                 </div>
                 <div class="card-body">
-                                <form action="{{route('payment.report')}}" method="POST">
-                                    @csrf
-                                    <input type="datetime-local" name="date_from" id="date_from"/>
-                                    <input type="datetime-local" name="date_to" id="date_to"/>
-                                    <input type="submit" class="btn btn-info" value="search"/>
-                                </form>
                     <table class="table table-bordered" name="payment_info" id="payment_info" style="margin-top: 25px;">
                         <tr>
                             <th>SN</th>
@@ -66,12 +60,12 @@
                                     <td>{{$row->amount}}</td>
                                     <td>{{$row->payment_date}}</td>
                                     <td>{{$row->created_by}}</td>
-{{--                                    <td>{{$row->createdBy->name}}</td>--}}
+                                    {{--                                    <td>{{$row->createdBy->name}}</td>--}}
                                 </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="6" class="text text-danger">Record not found</td>
-                                    </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="text text-danger">Record not found</td>
+                                </tr>
                             @endforelse
                         @else
                             <tr>

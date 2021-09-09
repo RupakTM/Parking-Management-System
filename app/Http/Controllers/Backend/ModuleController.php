@@ -15,11 +15,7 @@ use PhpParser\Node\Expr\AssignOp\Mod;
 
 class ModuleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $data['rows'] = Module::all();
@@ -27,11 +23,6 @@ class ModuleController extends Controller
         return view('module.index',compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $data['setting'] = Setting::first();

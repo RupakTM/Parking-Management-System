@@ -44,11 +44,9 @@ class ParkingController extends Controller
         $request->request->add(['status'=>1]);
         //set status of parking slot
         $parking_slot = $request->input('parking_slot_no');
-//        dd($parking_slot);
-//        $parking_status = ParkingSlot::find($parking_slot);
+
         $parking_status = ParkingSlot::where('number',$parking_slot)->first();
-//        dd($parking_status);
-//        dd($parking_status->id);
+
         if ($parking_status) {
             $parking_status->update(['status' => 1]);
             $request->request->add(['parking_slot_no'=>$parking_status->id]);
@@ -72,8 +70,7 @@ class ParkingController extends Controller
             $data['setting'] = Setting::first();
             $data['receipt'] = Parking::find($row->id);
             $data['parkingslot_number'] = ParkingSlot::where('id',$data['receipt']->parking_slot_no)->first();
-//            dd($data['receipt']);
-//            dd($data['receipt']->parkingslotNumber->number);
+
             return view('parking.parking_slip',compact('data'));
         } else{
             $request->session()->flash('error', 'Car parking failed');

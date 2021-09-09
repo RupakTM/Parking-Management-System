@@ -13,11 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class RoleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $data['rows'] = Role::all();
@@ -25,11 +21,7 @@ class RoleController extends Controller
         return view('role.index',compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $data['setting'] = Setting::first();
@@ -152,7 +144,7 @@ class RoleController extends Controller
             array_push($assigned_permission,$permission->id);
         }
         $data['assigned_permission'] = $assigned_permission;
-
+//        dd($data['assigned_permission']);
         $created_user = $data['row']->created_by;
         $data['create'] = User::find($created_user);
         $updated_user = $data['row']->updated_by;

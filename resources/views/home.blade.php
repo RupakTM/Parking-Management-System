@@ -75,7 +75,7 @@
                 </div>
                 <!-- /.row -->
                 <div class="row">
-                    Hello
+{{--                    Text here--}}
                 </div>
             </div><!-- /.container-fluid -->
         </section>
