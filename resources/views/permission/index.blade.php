@@ -51,7 +51,10 @@
                     @if(Session::has('error'))
                         <p class="alert alert-danger">{{ Session::get('error') }}</p>
                     @endif
-                    <table class="table table-bordered">
+                        <input class="form-control" id="search" type="text" placeholder="Search..">
+                        <br>
+                    <table class="table table-bordered" style="margin-bottom:10px; ">
+                        <thead>
                         <tr>
                             <th>SN</th>
                             <th>Name</th>
@@ -59,6 +62,8 @@
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
+                        </thead>
+                        <tbody id="data">
                         @forelse($data['rows'] as $i => $row)
                             <tr>
                                 <td>{{$i+1}}</td>
@@ -89,13 +94,13 @@
                                 <td colspan="5" class="text text-danger">Permissions not found</td>
                             </tr>
                         @endforelse
+                        </tbody>
                     </table>
+{{--                        <span>--}}
+{{--                            {{$data['rows']->links()}}--}}
+{{--                        </span>--}}
                 </div>
                 <!-- /.card-body -->
-                <div class="card-footer">
-                    Footer
-                </div>
-                <!-- /.card-footer-->
             </div>
             <!-- /.card -->
 
@@ -103,4 +108,17 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+@endsection
+
+@section('js')
+    <script>
+        $(document).ready(function(){
+            $("#search").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#data tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 @endsection

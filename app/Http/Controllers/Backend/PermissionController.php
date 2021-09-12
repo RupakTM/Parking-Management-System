@@ -79,15 +79,18 @@ class PermissionController extends Controller
 
     public function update(PermissionRequest $request, $id)
     {
-        dd($request);
-        $user_id = Auth::id();
-        $request->request->add(['updated_by'=>$user_id]);
+        dd($id);
         $data['row'] = Permission::find($id);
         if (!$data['row']){
             request()->session()->flash('error', 'Invalid request');
             return redirect()->route('permission.index');
         }
-        if ($data['row']->update($request->all())){
+        if ($data['row']) {
+            //User Id
+            $user_id = Auth::id();
+            $request->request->add(['updated_by'=>$user_id]);
+
+            $data['row']->update($request->all());
             $request->session()->flash('success', 'Permission updated successfully');
         } else{
             $request->session()->flash('error', 'Permission update failed');

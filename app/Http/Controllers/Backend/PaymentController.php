@@ -39,7 +39,7 @@ class PaymentController extends Controller
         return view('payment.searchinformation',compact('data'));
     }
 
-    public function report(PaymentRequest $request)
+    public function reportlist(PaymentRequest $request)
     {
 
         $data['setting'] = Setting::first();

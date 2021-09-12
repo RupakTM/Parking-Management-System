@@ -18,7 +18,7 @@
                     <i class="fa fa-info">
                         <span class="messagehover">
                             Search by invoice number.
-                            For example, type: 2021-0001</span>
+                            For example, type: {{date('Y')}}-0001</span>
                     </i>
                 </button>
 

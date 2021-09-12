@@ -50,7 +50,8 @@
                     @if(Session::has('error'))
                         <p class="alert alert-danger">{{ Session::get('error') }}</p>
                     @endif
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" style="margin-bottom: 10px;">
+                        <thead>
                         <tr>
                             <th>SN</th>
                             <th>Car Number</th>
@@ -60,6 +61,8 @@
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
+                        </thead>
+                        <tbody>
                         @forelse($data['rows'] as $i => $row)
                             <tr>
                                 <td>{{$i+1}}</td>
@@ -86,7 +89,11 @@
                                 <td colspan="7" class="text text-danger">Parking list not found</td>
                             </tr>
                         @endforelse
+                        </tbody>
                     </table>
+                    <span>
+                        {{$data['rows']->links()}}
+                    </span>
                 </div>
                 <!-- /.card-body -->
             </div>

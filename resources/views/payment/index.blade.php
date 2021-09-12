@@ -42,42 +42,56 @@
                     </div>
                 </div>
                 <div class="card-body">
-                                <form action="{{route('payment.report')}}" method="POST">
+                                <form action="{{route('payment.reportlist')}}" method="POST">
                                     @csrf
                                     <input type="datetime-local" name="date_from" id="date_from"/>
                                     <input type="datetime-local" name="date_to" id="date_to"/>
                                     <input type="submit" class="btn btn-info" value="search"/>
                                 </form>
                     <table class="table table-bordered" name="payment_info" id="payment_info" style="margin-top: 25px;">
-                        <tr>
-                            <th>SN</th>
-                            <th>Customer Name</th>
-                            <th>Invoice Number</th>
-                            <th>Amount(in Rs.)</th>
-                            <th>Payment Date</th>
-                            <th>Created By</th>
-                        </tr>
-                        @if(isset($data['payments']))
-                            @forelse($data['payments'] as $i => $row)
-                                <tr>
-                                    <td>{{$i+1}}</td>
-                                    <td>{{$row->customer_name}}</td>
-                                    <td>{{$row->invoice_no}}</td>
-                                    <td>{{$row->amount}}</td>
-                                    <td>{{$row->payment_date}}</td>
-                                    <td>{{$row->created_by}}</td>
-{{--                                    <td>{{$row->createdBy->name}}</td>--}}
-                                </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="6" class="text text-danger">Record not found</td>
-                                    </tr>
-                            @endforelse
-                        @else
+                        <thead>
                             <tr>
-                                <td colspan="6" class="text text-danger"></td>
+                                <th>SN</th>
+                                <th>Customer Name</th>
+                                <th>Invoice Number</th>
+                                <th>Amount(in Rs.)</th>
+                                <th>Payment Date</th>
+                                <th>Created By</th>
                             </tr>
-                        @endif
+                        </thead>
+                        <tbody>
+                            @if(isset($data['payments']))
+                                @forelse($data['payments'] as $i => $row)
+                                    <tr>
+                                        <td>{{$i+1}}</td>
+                                        <td>{{$row->customer_name}}</td>
+                                        <td>{{$row->invoice_no}}</td>
+                                        <td>{{$row->amount}}</td>
+                                        <td>{{$row->payment_date}}</td>
+                                        <td>{{$row->created_by}}</td>
+    {{--                                    <td>{{$row->createdBy->name}}</td>--}}
+                                    </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="6" class="text text-danger">Record not found</td>
+                                        </tr>
+                                @endforelse
+                            @else
+                                <tr>
+                                    <td colspan="6" class="text text-danger"></td>
+                                </tr>
+                            @endif
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>SN</th>
+                                <th>Customer Name</th>
+                                <th>Invoice Number</th>
+                                <th>Amount(in Rs.)</th>
+                                <th>Payment Date</th>
+                                <th>Created By</th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>

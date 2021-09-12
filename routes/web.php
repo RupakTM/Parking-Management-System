@@ -44,70 +44,79 @@ Route::middleware(['web','auth'])->group(function(){
     Route::middleware(['role_permission'])->group(function(){
 //    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
-    //Parking Slot Route
-    Route::resource('parkingslot',ParkingSlotController::class);
-//    Route::get('parkingslot/create', [ParkingSlotController::class, 'create'])->name('parkingslot.create');
-//    Route::post('parkingslot', [ParkingSlotController::class, 'store'])->name('parkingslot.store');
-//    Route::get('parkingslot', [ParkingSlotController::class, 'index'])->name('parkingslot.index');
-//    Route::get('parkingslot/{id}/edit', [ParkingSlotController::class, 'edit'])->name('parkingslot.edit');
-//    Route::put('parkingslot/{id}', [ParkingSlotController::class, 'update'])->name('parkingslot.update');
-//    Route::get('parkingslot/{id}', [ParkingSlotController::class, 'show'])->name('parkingslot.show');
+        //Parking Slot Route
+        Route::resource('parkingslot',ParkingSlotController::class);
+//      Route::get('parkingslot/create', [ParkingSlotController::class, 'create'])->name('parkingslot.create');
+//      Route::post('parkingslot', [ParkingSlotController::class, 'store'])->name('parkingslot.store');
+//      Route::get('parkingslot', [ParkingSlotController::class, 'index'])->name('parkingslot.index');
+//      Route::get('parkingslot/{id}/edit', [ParkingSlotController::class, 'edit'])->name('parkingslot.edit');
+//      Route::put('parkingslot/{id}', [ParkingSlotController::class, 'update'])->name('parkingslot.update');
+//      Route::get('parkingslot/{id}', [ParkingSlotController::class, 'show'])->name('parkingslot.show');
 
-    //Parking Route
-    Route::get('parking/create', [ParkingController::class, 'create'])->name('parking.create');
-    Route::post('parking', [ParkingController::class, 'store'])->name('parking.store');
-    Route::get('parking', [ParkingController::class, 'index'])->name('parking.index');
-    Route::get('parking/edit', [ParkingController::class, 'edit'])->name('parking.edit');
-    Route::post('parking/exit', [ParkingController::class, 'exit'])->name('parking.exit');
-    Route::put('parking/{id}', [ParkingController::class, 'update'])->name('parking.update');
-    Route::get('parking/invoice', [ParkingController::class, 'invoice'])->name('parking.invoice');
-    Route::get('parking/{id}', [ParkingController::class, 'show'])->name('parking.show');
+        //Parking Route
+        Route::get('parking/create', [ParkingController::class, 'create'])->name('parking.create');
+        Route::post('parking', [ParkingController::class, 'store'])->name('parking.store');
+        Route::get('parking', [ParkingController::class, 'index'])->name('parking.index');
+        Route::get('parking/edit', [ParkingController::class, 'edit'])->name('parking.edit');
+        Route::post('parking/exit', [ParkingController::class, 'exit'])->name('parking.exit');
+        Route::put('parking/{id}', [ParkingController::class, 'update'])->name('parking.update');
+        Route::get('parking/invoice', [ParkingController::class, 'invoice'])->name('parking.invoice');
+        Route::get('parking/{id}', [ParkingController::class, 'show'])->name('parking.show');
 
 
-    //User Route
-    Route::get('user/trash', [UserController::class, 'trash'])->name('user.trash');
-    Route::post('user/{id}/restore', [UserController::class,'restore'])->name('user.restore');
-    Route::delete('user/{id}/force-delete',[UserController::class,'forceDelete'])->name('user.forceDelete');
-    Route::resource('user',UserController::class);
+        //User Route
+        Route::get('user/trash', [UserController::class, 'trash'])->name('user.trash');
+        Route::post('user/{id}/restore', [UserController::class,'restore'])->name('user.restore');
+        Route::delete('user/{id}/force-delete',[UserController::class,'forceDelete'])->name('user.forceDelete');
+        Route::resource('user',UserController::class);
 
-    //Setting Route
-    Route::get('setting/edit', [SettingController::class, 'edit'])->name('setting.edit');
-    Route::put('setting/{id}', [SettingController::class, 'update'])->name('setting.update');
+        //Setting Route
+        Route::get('setting/edit', [SettingController::class, 'edit'])->name('setting.edit');
+        Route::put('setting/{id}', [SettingController::class, 'update'])->name('setting.update');
 
-    //Role Route
-    //ACL
-    Route::get('role/assign_permission/{role_id}', [RoleController::class, 'assignPermission'])->name('role.assign_permission');
-    Route::post('role/post_permission', [RoleController::class, 'postPermission'])->name('role.post_permission');
-    // ACL ends
-    Route::get('role/trash', [RoleController::class, 'trash'])->name('role.trash');
-    Route::post('role/{id}/restore', [RoleController::class,'restore'])->name('role.restore');
-    Route::delete('role/{id}/force-delete',[RoleController::class,'forceDelete'])->name('role.forceDelete');
-    Route::resource('role',RoleController::class);
+        //Role Route
+        //ACL
+        Route::get('role/assign_permission/{role_id}', [RoleController::class, 'assignPermission'])->name('role.assign_permission');
+        Route::post('role/post_permission', [RoleController::class, 'postPermission'])->name('role.post_permission');
+        // ACL ends
+        Route::get('role/trash', [RoleController::class, 'trash'])->name('role.trash');
+        Route::post('role/{id}/restore', [RoleController::class,'restore'])->name('role.restore');
+        Route::delete('role/{id}/force-delete',[RoleController::class,'forceDelete'])->name('role.forceDelete');
+        Route::resource('role',RoleController::class);
 
-    //Staff Route
-    Route::get('staff/trash', [StaffController::class, 'trash'])->name('staff.trash');
-    Route::post('staff/{id}/restore', [StaffController::class,'restore'])->name('staff.restore');
-    Route::delete('staff/{id}/force-delete',[StaffController::class,'forceDelete'])->name('staff.forceDelete');
-    Route::resource('staff',StaffController::class);
+        //Staff Route
+        Route::get('staff/trash', [StaffController::class, 'trash'])->name('staff.trash');
+        Route::post('staff/{id}/restore', [StaffController::class,'restore'])->name('staff.restore');
+        Route::delete('staff/{id}/force-delete',[StaffController::class,'forceDelete'])->name('staff.forceDelete');
+        Route::resource('staff',StaffController::class);
 
-    //Customer Route
-    Route::resource('customer',CustomerController::class);
+        //Customer Route
+        Route::resource('customer',CustomerController::class);
 
-    //Payment Route
+        //Payment Route
         Route::post('payment/search', [PaymentController::class, 'search'])->name('payment.search');
-        Route::post('payment/report', [PaymentController::class, 'report'])->name('payment.report');
+        Route::post('payment/reportlist', [PaymentController::class, 'reportlist'])->name('payment.reportlist');
 
         Route::resource('payment',PaymentController::class);
 
-    //Module Route
-    Route::resource('module',ModuleController::class);
+        //Module Route
+        Route::resource('module',ModuleController::class);
 
-    //Permission Route
+        //Permission Route
         Route::resource('permission',PermissionController::class);
+
+//        Route::get('permission/create', [PermissionController::class, 'create'])->name('permission.create');
+//        Route::post('permission', [PermissionController::class, 'store'])->name('permission.store');
+//        Route::get('permission', [PermissionController::class, 'index'])->name('permission.index');
+//        Route::get('permission/edit', [PermissionController::class, 'edit'])->name('permission.edit');
+//        Route::put('permission/{id}', [PermissionController::class, 'update'])->name('permission.update');
+//        Route::get('permission/{id}', [PermissionController::class, 'show'])->name('permission.show');
+//        Route::delete('permission/{id}', [PermissionController::class, 'destroy'])->name('permission.destroy');
 
 
     });
 
+//    role_permission middleware ends
 
 
 //    Route::resource('parking',ParkingController::class);

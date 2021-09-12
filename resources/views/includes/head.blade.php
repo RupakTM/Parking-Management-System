@@ -10,6 +10,8 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('backend/dist/css/adminlte.min.css')}}">
 
+
+
     <!-- Custom css-->
     <link rel="stylesheet" href="{{asset('backend/dist/css/custom.css')}}">
 {{--    <link rel="stylesheet" href="{{asset('backend/dist/css/login.css')}}">--}}

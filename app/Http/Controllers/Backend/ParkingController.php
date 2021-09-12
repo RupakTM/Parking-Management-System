@@ -81,7 +81,7 @@ class ParkingController extends Controller
 
     function index(){
         $data['setting'] = Setting::first();
-        $data['rows'] = Parking::all();
+        $data['rows'] = Parking::simplePaginate(8);
         return view('parking.index',compact('data'));
     }
 
