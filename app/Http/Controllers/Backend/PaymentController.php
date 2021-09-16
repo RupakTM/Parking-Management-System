@@ -26,14 +26,8 @@ class PaymentController extends Controller
         $data['setting'] = Setting::first();
 
         $bill_no = $request->input('searchBill');
-        //Store Data To payment Table
 
-        //payment data stored
-
-        $data['payments'] = DB::table('payments')
-            ->select("*")
-            ->where('invoice_no', $bill_no)
-            ->get();
+        $data['payments'] = Payment::where('invoice_no', $bill_no)->first();
 //        dd($data['payments']);
 
         return view('payment.searchinformation',compact('data'));
@@ -47,15 +41,7 @@ class PaymentController extends Controller
         $date_from = $request->input('date_from');
         $date_to = $request->input('date_to');
 
-        //Store Data To payment Table
-
-        //payment data stored
-
-        $data['payments'] = DB::table('payments')
-            ->select("*")
-            ->whereBetween('payment_date', [$date_from, $date_to])
-            ->get();
-//        dd($data['payments']);
+        $data['payments'] = Payment::whereBetween('payment_date', [$date_from, $date_to])->get();
 
         return view('payment.index',compact('data'));
     }

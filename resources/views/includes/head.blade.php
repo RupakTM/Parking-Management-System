@@ -10,7 +10,14 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('backend/dist/css/adminlte.min.css')}}">
 
-
+    <style type="text/css">
+        /*if you want to remove some content in print display then use .no_print class on it */
+        @media print {
+            #datatable_wrapper .row:first-child {display:none;}
+            #datatable_wrapper .row:last-child {display:none;}
+            .no_print {display:none;}
+        }
+    </style>
 
     <!-- Custom css-->
     <link rel="stylesheet" href="{{asset('backend/dist/css/custom.css')}}">

@@ -2,6 +2,7 @@
 
 @section('title','Payment Management')
 
+
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -39,40 +40,37 @@
                         <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
                             <i class="fas fa-times"></i>
                         </button>
+
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered" name="payment_info" id="payment_info" style="margin-top: 25px;">
-                        <tr>
-                            <th>SN</th>
-                            <th>Customer Name</th>
-                            <th>Invoice Number</th>
-                            <th>Amount(in Rs.)</th>
-                            <th>Payment Date</th>
-                            <th>Created By</th>
-                        </tr>
-                        @if(isset($data['payments']))
-                            @forelse($data['payments'] as $i => $row)
-                                <tr>
-                                    <td>{{$i+1}}</td>
-                                    <td>{{$row->customer_name}}</td>
-                                    <td>{{$row->invoice_no}}</td>
-                                    <td>{{$row->amount}}</td>
-                                    <td>{{$row->payment_date}}</td>
-                                    <td>{{$row->created_by}}</td>
-                                    {{--                                    <td>{{$row->createdBy->name}}</td>--}}
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="6" class="text text-danger">Record not found</td>
-                                </tr>
-                            @endforelse
-                        @else
+                    @if(isset($data['payments']))
+                        <table class="table table-bordered">
                             <tr>
-                                <td colspan="6" class="text text-danger"></td>
+                                <th>Customer Name</th>
+                                <td>{{$data['payments']->customer_name}}</td>
                             </tr>
-                        @endif
-                    </table>
+                            <tr>
+                                <th>Invoice Number</th>
+                                <td>{{$data['payments']->invoice_no}}</td>
+                            </tr>
+                            <tr>
+                                <th>Amount (in Npr)</th>
+                                <td>{{$data['payments']->amount}}</td>
+                            </tr>
+                            <tr>
+                                <th>Payment Date</th>
+                                <td>{{$data['payments']->payment_date}}</td>
+                            </tr>
+                            <tr>
+                                <th>Created By</th>
+                                <td>{{$data['payments']->createdBy->name}}</td>
+                            </tr>
+                        </table>
+                    @else
+                        <label class="text text-danger">Record not found</label>
+                    @endif
+
                 </div>
             </div>
             <!-- /.card -->
@@ -82,6 +80,8 @@
     </div>
     <!-- /.content-wrapper -->
 @endsection
+
+
 
 {{--@section('js')--}}
 {{--    <script>--}}
