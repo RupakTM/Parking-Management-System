@@ -105,6 +105,7 @@ Route::middleware(['web','auth'])->group(function(){
         //Permission Route
         Route::resource('permission',PermissionController::class);
 
+
 //        Route::get('permission/create', [PermissionController::class, 'create'])->name('permission.create');
 //        Route::post('permission', [PermissionController::class, 'store'])->name('permission.store');
 //        Route::get('permission', [PermissionController::class, 'index'])->name('permission.index');

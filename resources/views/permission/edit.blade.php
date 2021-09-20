@@ -44,12 +44,12 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="{{route('permission.update',$data['row']->id)}}" method="POST">
+                    <form action="{{route('permission.update',$data['row']->id)}}" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="_method" value="PUT">
                         <input type="hidden" name="id" value="{{$data['row']->id}}">
                         @csrf
                         <div class="form-group">
-                            <label for="name">Module Name</label>
+                            <label for="module_id">Module Name</label>
                             <select name="module_id" id="module_id" class="form-control">
                                 <option value="">Select Module</option>
                                 @foreach($data['modules'] as $module)
@@ -60,7 +60,7 @@
                                     @endif
                                 @endforeach
                             </select>
-                            @error('name')
+                            @error('module_id')
                             <p class="text-danger">{{$message}}</p>
                             @enderror
                         </div>
@@ -68,6 +68,13 @@
                             <label for="name">Name</label>
                             <input type="text" class="form-control" name="name" id="name" value="{{$data['row']->name}}">
                             @error('name')
+                            <p class="text-danger">{{$message}}</p>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="route">Route</label>
+                            <input type="text" class="form-control" name="route" id="route" value="{{$data['row']->route}}">
+                            @error('route')
                             <p class="text-danger">{{$message}}</p>
                             @enderror
                         </div>

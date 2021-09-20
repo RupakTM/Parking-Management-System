@@ -77,15 +77,21 @@ class PermissionController extends Controller
         return view('permission.edit',compact('data'));
     }
 
-    public function update(PermissionRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        dd($id);
         $data['row'] = Permission::find($id);
+        //validation
+        $validatedData = $this->validate($request,[
+            'module_id' => 'required|not_in:0',
+            'name' => 'required',
+            'route' => 'required',
+        ]);
+        // end of validation
         if (!$data['row']){
             request()->session()->flash('error', 'Invalid request');
             return redirect()->route('permission.index');
         }
-        if ($data['row']) {
+        if (isset($validatedData) && $data['row']) {
             //User Id
             $user_id = Auth::id();
             $request->request->add(['updated_by'=>$user_id]);
@@ -108,5 +114,6 @@ class PermissionController extends Controller
         }
         return redirect()->route('permission.index');
     }
+
 
 }
