@@ -23,10 +23,13 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
+        // (?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})
         return [
             'staff_id' =>'required|not_in:0',
-            'password' => 'min:6|required_with:confirm_password|same:confirm_password',
+            'email' =>'email:rfc,dns',
+            'password' => 'min:6|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/|required_with:confirm_password|same:confirm_password',
             'image' => 'mimes:png,jpg|max:2048',
+            'role_id' =>'required|not_in:0',
 
         ];
     }

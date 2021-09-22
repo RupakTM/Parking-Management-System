@@ -81,7 +81,7 @@ class ParkingController extends Controller
 
     function index(){
         $data['setting'] = Setting::first();
-        $data['rows'] = Parking::simplePaginate(8);
+        $data['rows'] = Parking::orderBy('id','DESC')->simplePaginate(8);
         return view('parking.index',compact('data'));
     }
 
@@ -106,17 +106,39 @@ class ParkingController extends Controller
 
     }
 
-    function edit(){
+    public function edit($id)
+    {
         $data['setting'] = Setting::first();
-        $data['rows'] = Parking::all();
+        $data['row'] = Parking::find($id);
+        if (!$data['row']){
+            request()->session()->flash('error', 'Invalid request');
+            return redirect()->route('parking.index');
+        }
         return view('parking.edit',compact('data'));
     }
 
     public function update(ParkingRequest $request, $id)
     {
-
+        $data['row'] = Parking::find($id);
+        if (!$data['row']){
+            request()->session()->flash('error', 'Invalid request');
+            return redirect()->route('parking.index');
+        }
+        if ($data['row']->update($request->all())){
+            $request->session()->flash('success', 'Parking information updated successfully');
+        } else{
+            $request->session()->flash('error', 'Parking information update failed');
+        }
+        return redirect()->route('parking.index');
     }
-    public function exit(Request $request)
+
+    public function exit(){
+        $data['setting'] = Setting::first();
+        $data['rows'] = Parking::all();
+        return view('parking.exit',compact('data'));
+    }
+
+    public function exitCar(Request $request)
     {
 
         $car_id = $request->input('car_id');

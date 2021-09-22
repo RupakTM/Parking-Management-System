@@ -24,12 +24,12 @@ class SettingRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
+            'name'=>'required|regex:/^[a-zA-Z\ \.]+$/',
             'address' => 'required',
             'pan_no'=>'required',
             'reg_no' => 'required',
-            'phone'=>'required',
-            'price_per_hour' => 'required',
+            'phone'=>'required|regex:/^(98)([0-9]{8})$/',
+            'price_per_hour' => 'required|numeric',
             'logo_file' => 'mimes:png,jpg|max:2048',
             'fav_file' => 'mimes:png,jpg|max:2048',
         ];

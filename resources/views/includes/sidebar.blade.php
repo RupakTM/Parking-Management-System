@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('parking.edit')}}" class="nav-link">
+                    <a href="{{route('parking.exit')}}" class="nav-link">
                         <i class="nav-icon fas fa-door-open"></i>
                         <p>
                             Exit

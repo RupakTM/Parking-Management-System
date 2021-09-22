@@ -7,6 +7,7 @@ use App\Http\Requests\PaymentRequest;
 use App\Http\Requests\SettingRequest;
 use App\Models\Payment;
 use App\Models\Setting;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -25,7 +26,7 @@ class PaymentController extends Controller
 
         $data['setting'] = Setting::first();
 
-        $bill_no = $request->input('searchBill');
+        $bill_no = $request->input('invoice_id');
 
         $data['payments'] = Payment::where('invoice_no', $bill_no)->first();
 //        dd($data['payments']);
@@ -40,9 +41,11 @@ class PaymentController extends Controller
 
         $date_from = $request->input('date_from');
         $date_to = $request->input('date_to');
-
-        $data['payments'] = Payment::whereBetween('payment_date', [$date_from, $date_to])->get();
-
+        if($date_from <= $date_to){
+            $data['payments'] = Payment::whereBetween('payment_date', [$date_from, $date_to])->get();
+        } else{
+            $request->session()->flash('error', 'Invalid Request');
+        }
         return view('payment.index',compact('data'));
     }
 

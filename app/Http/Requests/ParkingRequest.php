@@ -24,8 +24,9 @@ class ParkingRequest extends FormRequest
     public function rules()
     {
         return [
-            'car_no'=>'required',
-            'customer_name' => 'required',
+            'car_no'=>'required|regex:/^[a-zA-Z\d\ ]+$/', // alphabet with digit and space
+            'customer_name' => 'required|regex:/^[a-zA-Z\ ]+$/', // alphabet with space
+            'parking_slot_no' => 'required',
         ];
     }
 }

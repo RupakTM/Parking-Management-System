@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','Edit Car')
+@section('title','Exit Car')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -10,12 +10,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Parking Information</h1>
+                        <h1>Exit Car</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Edit Parking Information</li>
+                            <li class="breadcrumb-item active">Exit Car</li>
                         </ol>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Edit Parking Information</h3>
+                    <h3 class="card-title">Exit</h3>
 
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -46,29 +46,71 @@
                     @if(Session::has('error'))
                         <p class="alert alert-danger">{{ Session::get('error') }}</p>
                     @endif
-                    <form action="{{route('parking.update',$data['row']->id)}}" method="POST">
-                        <input type="hidden" name="_method" value="PUT">
-                        <input type="hidden" name="id" value="{{$data['row']->id}}">
+                    <form method="POST" id="exitCar" action="{{route('parking.exitCar')}}">
+                        {{--                        onsubmit="return validateForm(this)"--}}
+                        {{--                        <input type="hidden" name="_method" value="PUT">--}}
                         @csrf
                         <div class="form-group">
                             <label for="car_no">Car Number</label>
-                            <input type="text" class="form-control" name="car_no" id="car_no" value="{{$data['row']->car_no}}">
+                            <select name="car_no" id="car_no" class="form-control">
+                                <option value="">Choose car</option>
+                                @foreach($data['rows'] as $row)
+                                    @if($row->status == 1)
+                                        <option value="{{$row->id}}">{{$row->car_no}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
                             @error('car_no')
                             <p class="text-danger">{{$message}}</p>
                             @enderror
                         </div>
+                        <input type="hidden" name="car_id" id="car_id" value="">
+
                         <div class="form-group">
-                            <label for="customer_name">Customer Name</label>
-                            <input type="text" class="form-control" name="customer_name" id="customer_name" value="{{$data['row']->customer_name}}">
-                            @error('customer_name')
-                            <p class="text-danger">{{$message}}</p>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <input type="hidden" name="parking_slot_no" id="parking_slot_no" value="{{$data['row']->parking_slot_no}}">
-                            <input type="submit" name="btnUpdate" value="Update" class="btn btn-primary">
+                            <input type="submit" name="btnExit" value="Exit" class="btn btn-warning">
                         </div>
                     </form>
+                    <div class="card" id="result" style="display: none;">
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Reg Number</th>
+                                    <td>26</td>
+                                </tr>
+                                <tr>
+                                    <th>Car Number</th>
+                                    <td>Lu 36 Pa 2563</td>
+                                </tr>
+                                <tr>
+                                    <th>Slot Number</th>
+                                    <td>Slot 8</td>
+                                </tr>
+                                <tr>
+                                    <th>Start Time</th>
+                                    <td>---</td>
+                                </tr>
+                                <tr>
+                                    <th>Exit Time</th>
+                                    <td>---</td>
+                                </tr>
+                                <tr>
+                                    <th>Total Time</th>
+                                    <td>---</td>
+                                </tr>
+                                <tr>
+                                    <th>Price</th>
+                                    <td>---</td>
+                                </tr>
+                                <tr>
+                                    <th colspan="2">
+                                        <div class="form-group">
+                                            <input type="submit" name="btnPrint" value="Print" class="btn btn-info" >
+                                        </div>
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -167,13 +209,13 @@
         {{--    $('form').submit();--}}
         {{--});--}}
     </script>
-{{--    <script>--}}
-{{--        function exitForm() {--}}
-{{--            alert('Validating form...');--}}
-{{--            var c = document.getElementById('txtValue').value;--}}
-{{--            text = escape(text);--}}
-{{--            location.href = 'test.html?param=' + text;--}}
-{{--            return false;--}}
-{{--        }--}}
-{{--    </script>--}}
+    {{--    <script>--}}
+    {{--        function exitForm() {--}}
+    {{--            alert('Validating form...');--}}
+    {{--            var c = document.getElementById('txtValue').value;--}}
+    {{--            text = escape(text);--}}
+    {{--            location.href = 'test.html?param=' + text;--}}
+    {{--            return false;--}}
+    {{--        }--}}
+    {{--    </script>--}}
 @endsection

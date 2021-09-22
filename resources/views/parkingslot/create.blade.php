@@ -48,8 +48,8 @@
                             <label for="number">Parking Slot No.</label>
                             <input type="text" class="form-control" name="number" id="number" value="{{$data['last_id']->number+1}}" readonly>
                             <label for="status">Status</label>
-                            <input type="radio" name="status" id="active" value="1">Active
-                            <input type="radio" name="status" id="deactive" value="0" checked>De Active
+                            <input type="radio" name="status" id="deactive" value="0" checked>Available
+                            <input type="radio" name="status" id="active" value="1">Unavailable
                         </div>
                         <div class="form-group">
                             <input type="submit" name="btnSave" value="Save" class="btn btn-primary">

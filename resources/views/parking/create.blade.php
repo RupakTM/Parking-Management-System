@@ -87,6 +87,9 @@
                                     </div>
                                     <input type="hidden" name="parking_slot_no" id="parking_slot_no" value="">
                                 </div>
+                                @error('parking_slot')
+                                <p class="text-danger">{{$message}}</p>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group">

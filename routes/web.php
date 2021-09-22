@@ -54,14 +54,15 @@ Route::middleware(['web','auth'])->group(function(){
 //      Route::get('parkingslot/{id}', [ParkingSlotController::class, 'show'])->name('parkingslot.show');
 
         //Parking Route
+        Route::get('parking/exit', [ParkingController::class, 'exit'])->name('parking.exit');
         Route::get('parking/create', [ParkingController::class, 'create'])->name('parking.create');
         Route::post('parking', [ParkingController::class, 'store'])->name('parking.store');
         Route::get('parking', [ParkingController::class, 'index'])->name('parking.index');
-        Route::get('parking/edit', [ParkingController::class, 'edit'])->name('parking.edit');
-        Route::post('parking/exit', [ParkingController::class, 'exit'])->name('parking.exit');
-        Route::put('parking/{id}', [ParkingController::class, 'update'])->name('parking.update');
-        Route::get('parking/invoice', [ParkingController::class, 'invoice'])->name('parking.invoice');
         Route::get('parking/{id}', [ParkingController::class, 'show'])->name('parking.show');
+        Route::get('parking/{id}/edit', [ParkingController::class, 'edit'])->name('parking.edit');
+        Route::put('parking/{id}', [ParkingController::class, 'update'])->name('parking.update');
+        Route::post('parking/exitCar', [ParkingController::class, 'exitCar'])->name('parking.exitCar');
+        Route::get('parking/invoice', [ParkingController::class, 'invoice'])->name('parking.invoice');
 
 
         //User Route

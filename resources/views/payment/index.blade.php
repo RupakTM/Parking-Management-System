@@ -42,15 +42,19 @@
                     </div>
                 </div>
                 <div class="card-body">
-                                <form action="{{route('payment.reportlist')}}" method="POST" class="no_print">
-                                    @csrf
-                                    <input type="datetime-local" name="date_from" id="date_from"/>
-                                    <input type="datetime-local" name="date_to" id="date_to"/>
-                                    <input type="submit" class="btn btn-info" value="search"/>
-
-                                    <a class="btn btn-primary text-white" id="printBtn">Print / PDF</a>
-
-                                </form>
+                    @if(Session::has('success'))
+                        <p class="alert alert-success">{{ Session::get('success') }}</p>
+                    @endif
+                    @if(Session::has('error'))
+                        <p class="alert alert-danger">{{ Session::get('error') }}</p>
+                    @endif
+                    <form action="{{route('payment.reportlist')}}" method="POST" class="no_print">
+                        @csrf
+                        <input type="datetime-local" name="date_from" id="date_from"/>
+                        <input type="datetime-local" name="date_to" id="date_to"/>
+                        <input type="submit" class="btn btn-info" value="search"/>
+                        <a class="btn btn-primary text-white" id="printBtn">Print / PDF</a>
+                    </form>
                     <table class="table table-bordered" name="payment_info" id="payment_info" style="margin-top: 25px;">
                         <thead>
                             <tr>
@@ -71,7 +75,6 @@
                                         <td>{{$row->invoice_no}}</td>
                                         <td>{{$row->amount}}</td>
                                         <td>{{$row->payment_date}}</td>
-{{--                                        <td>{{$row->created_by}}</td>--}}
                                         <td>{{$row->createdBy->name}}</td>
                                     </tr>
                                     @empty

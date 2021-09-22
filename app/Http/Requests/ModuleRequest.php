@@ -24,7 +24,7 @@ class ModuleRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|regex:/^[a-zA-Z\ ]+$/',
             'route' => 'required',
         ];
     }

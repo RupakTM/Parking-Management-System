@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ParkingRequest;
 use App\Http\Requests\RoleRequest;
 use App\Models\Module;
 use App\Models\Role;
@@ -73,7 +74,7 @@ class RoleController extends Controller
         return view('role.edit',compact('data'));
     }
 
-    public function update(RoleRequest $request, $id)
+    public function update(ParkingRequest $request, $id)
     {
         $user_id = Auth::id();
         $request->request->add(['updated_by'=>$user_id]);

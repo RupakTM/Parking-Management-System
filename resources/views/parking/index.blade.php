@@ -72,9 +72,9 @@
                                 <td>{{$row->entry_time}}</td>
                                 <td>
                                     @if($row->status == 1)
-                                        <span class="text-success">Active</span>
+                                        <span class="text-success">IN</span>
                                     @else
-                                        <span class="text-danger">De Active</span>
+                                        <span class="text-danger">OUT</span>
                                     @endif
                                 </td>
                                 <td>

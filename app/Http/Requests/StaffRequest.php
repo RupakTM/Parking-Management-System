@@ -6,28 +6,19 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StaffRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
+
     public function authorize()
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         return [
-            'name'=>'required',
-            'email' =>'required',
+            'name'=>'required|regex:/^[a-zA-Z\ ]+$/',
+            'email' =>'email:rfc,dns',
             'address' => 'required',
-            'phone'=>'required|numeric|digits:10',
+            'phone'=>'required|regex:/^(98)([0-9]{8})$/', //starting with 98 followed by 8 digits
             'image' => 'mimes:png,jpg|max:2048',
         ];
 

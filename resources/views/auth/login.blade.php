@@ -61,15 +61,6 @@
 <script src="{{asset('backend/dist/js/adminlte.min.js')}}"></script>
 
 <script type="text/javascript">
-    $(document).ready(function(){
-        // alert('test');
-        $('#loginForm').validate({
-            rules: {
-                email: "required",
-                password: "required",
-            }
-        });
-    });
 
     // Show/Hide Password Field
     $(".toggle-password").click(function() {

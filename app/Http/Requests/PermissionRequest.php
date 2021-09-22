@@ -25,7 +25,7 @@ class PermissionRequest extends FormRequest
     {
         return [
             'module_id' => 'required|not_in:0',
-            'name' => 'required',
+            'name' => 'required|regex:/^[a-zA-Z\ ]+$/',
             'route' => 'required',
         ];
     }

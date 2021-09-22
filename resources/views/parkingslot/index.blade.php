@@ -61,9 +61,9 @@
                                 <td>{{$row->number}}</td>
                                 <td>
                                     @if($row->status == 1)
-                                        <span class="text-success">Active</span>
+                                        <span class="text-danger">Unavailable</span>
                                     @else
-                                        <span class="text-danger">De Active</span>
+                                        <span class="text-success">Available</span>
                                     @endif
                                 </td>
                                 <td>

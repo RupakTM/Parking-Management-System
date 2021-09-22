@@ -12,7 +12,7 @@
     <form action="{{route('payment.search')}}" method="POST" class="form-inline ml-3">
         @csrf
         <div class="input-group input-group-sm">
-            <input class="form-control form-control-navbar" type="search" name="searchBill" id="searchBill" placeholder="Search" aria-label="Search">
+            <input class="form-control form-control-navbar" type="search" name="invoice_id" id="invoice_id" placeholder="Search" aria-label="Search">
             <div class="input-group-append" id="iconmessage">
                 <button class="btn btn-navbar" type="submit">
                     <i class="fa fa-info">
