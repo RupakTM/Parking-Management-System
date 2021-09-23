@@ -82,22 +82,26 @@
                                             <td colspan="6" class="text text-danger">Record not found</td>
                                         </tr>
                                 @endforelse
+                                <tr style="text-align: center">
+                                    <th colspan="5">Total Amount</th>
+                                    <th>Rs. {{$total_amount}}</th>
+                                </tr>
                             @else
                                 <tr>
                                     <td colspan="6" class="text text-danger"></td>
                                 </tr>
                             @endif
                         </tbody>
-                        <tfoot class="no_print">
-                            <tr>
-                                <th>SN</th>
-                                <th>Customer Name</th>
-                                <th>Invoice Number</th>
-                                <th>Amount(in Rs.)</th>
-                                <th>Payment Date</th>
-                                <th>Created By</th>
-                            </tr>
-                        </tfoot>
+{{--                        <tfoot class="no_print">--}}
+{{--                            <tr>--}}
+{{--                                <th>SN</th>--}}
+{{--                                <th>Customer Name</th>--}}
+{{--                                <th>Invoice Number</th>--}}
+{{--                                <th>Amount(in Rs.)</th>--}}
+{{--                                <th>Payment Date</th>--}}
+{{--                                <th>Created By</th>--}}
+{{--                            </tr>--}}
+{{--                        </tfoot>--}}
                     </table>
                 </div>
             </div>

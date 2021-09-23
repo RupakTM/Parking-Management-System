@@ -38,15 +38,21 @@ class PaymentController extends Controller
     {
 
         $data['setting'] = Setting::first();
-
-        $date_from = $request->input('date_from');
         $date_to = $request->input('date_to');
-        if($date_from <= $date_to){
-            $data['payments'] = Payment::whereBetween('payment_date', [$date_from, $date_to])->get();
+        $date_from = $request->input('date_from');
+        if ($date_to){
+            if ($date_from <= $date_to){
+                $data['payments'] = Payment::whereBetween('payment_date', [$date_from, $date_to])->get();
+                $total_amount = Payment::whereBetween('payment_date', [$date_from, $date_to])->sum('amount');
+            } else{
+                $request->session()->flash('error', 'Invalid Request');
+            }
         } else{
-            $request->session()->flash('error', 'Invalid Request');
+            $date_to = Carbon::now();
+            $data['payments'] = Payment::whereBetween('payment_date', [$date_from, $date_to])->get();
+            $total_amount = Payment::whereBetween('payment_date', [$date_from, $date_to])->sum('amount');
         }
-        return view('payment.index',compact('data'));
+        return view('payment.index',compact('data','total_amount'));
     }
 
 

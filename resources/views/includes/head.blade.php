@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="{{asset('backend/plugins/fontawesome-free/css/all.min.css')}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('backend/dist/css/adminlte.min.css')}}">
-
     <style type="text/css">
         /*if you want to remove some content in print display then use .no_print class on it */
         @media print {
