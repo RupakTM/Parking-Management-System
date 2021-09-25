@@ -25,7 +25,7 @@
 <div class="custom-card">
     <div class="login-box">
         <h1>Login</h1>
-            <form method="POST" action="{{ route('login') }}" id="loginForm" novalidate>
+            <form method="POST" action="{{route('login') }}" id="loginForm" novalidate>
                 @csrf
                 <div class="textbox">
                     <i class="fa fa-user"></i>

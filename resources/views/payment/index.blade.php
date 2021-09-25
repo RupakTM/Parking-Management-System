@@ -50,7 +50,9 @@
                     @endif
                     <form action="{{route('payment.reportlist')}}" method="POST" class="no_print">
                         @csrf
+                        <label for="">From:</label>
                         <input type="datetime-local" name="date_from" id="date_from"/>
+                        <label for="">To:</label>
                         <input type="datetime-local" name="date_to" id="date_to"/>
                         <input type="submit" class="btn btn-info" value="search"/>
                         <a class="btn btn-primary text-white" id="printBtn">Print / PDF</a>
@@ -129,6 +131,8 @@
 
 @endsection
 
+
+
 {{--@section('js')--}}
 {{--    <script>--}}
 {{--        function showTable() {--}}
@@ -138,3 +142,7 @@
 {{--    </script>--}}
 {{--@endsection--}}
 
+{{--alert message fade out--}}
+{{-- $(document).ready(function(){--}}
+{{--     $(".alert").slideDown(300).delay(3000).slideUp(300);--}}
+{{-- });--}}

@@ -46,12 +46,6 @@ Route::middleware(['web','auth'])->group(function(){
 
         //Parking Slot Route
         Route::resource('parkingslot',ParkingSlotController::class);
-//      Route::get('parkingslot/create', [ParkingSlotController::class, 'create'])->name('parkingslot.create');
-//      Route::post('parkingslot', [ParkingSlotController::class, 'store'])->name('parkingslot.store');
-//      Route::get('parkingslot', [ParkingSlotController::class, 'index'])->name('parkingslot.index');
-//      Route::get('parkingslot/{id}/edit', [ParkingSlotController::class, 'edit'])->name('parkingslot.edit');
-//      Route::put('parkingslot/{id}', [ParkingSlotController::class, 'update'])->name('parkingslot.update');
-//      Route::get('parkingslot/{id}', [ParkingSlotController::class, 'show'])->name('parkingslot.show');
 
         //Parking Route
         Route::get('parking/exit', [ParkingController::class, 'exit'])->name('parking.exit');

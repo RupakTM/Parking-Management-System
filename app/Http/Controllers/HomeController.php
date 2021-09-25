@@ -32,11 +32,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $date = Carbon::parse('22:02:00');
-        $now = Carbon::now();
-
-        $diff = $date->diff($now)->format('%H:%I:%S');
-//        dd($diff);
         $data['setting'] = Setting::first();
 
         if ($data['setting'] == null){
