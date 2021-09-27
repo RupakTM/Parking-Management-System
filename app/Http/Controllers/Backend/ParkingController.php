@@ -255,4 +255,21 @@ class ParkingController extends Controller
         $data['rows'] = Parking::all();
         return view('parking.invoice',compact('data'));
     }
+
+    function report(){
+        $data['setting'] = Setting::first();
+        $data['setting'] = Setting::first();
+        $data['rows'] = Parking::distinct()->get(['car_no']);
+        return view('parking.report',compact('data'));
+    }
+    function reportShow($car_no){
+        $data['setting'] = Setting::first();
+        $data['rows'] = Parking::where('car_no',$car_no)->get();
+        $total_amount = Parking::where('car_no',$car_no)->sum('price');
+
+//        dd($data['row']);
+//        return view('parking.report',compact('data','car_no','total_amount'));
+        return view('parking.showparkingreport',compact('data','total_amount','car_no'));
+    }
+
 }

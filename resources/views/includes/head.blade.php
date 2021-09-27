@@ -11,7 +11,6 @@
     <link rel="shortcut icon" href="{{asset('uploads/images/settings/'.$data['setting']->fav_icon)}}">
 
     <link rel="stylesheet" href="{{asset('backend/dist/css/adminlte.min.css')}}">
-{{--    <link rel="icon" type="img/png" href="{{asset('settings/'.$data['setting']->fav_icon)}}">--}}
     <style type="text/css">
         /*if you want to remove some content in print display then use .no_print class on it */
         @media print {

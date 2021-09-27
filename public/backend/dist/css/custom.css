@@ -100,3 +100,12 @@ span.grey {
 
 /* hover message ends */
 
+
+
+/* Parking report table */
+#report_table {
+    margin-bottom: 10px;
+    /*align-content: center;*/
+    text-align: center;
+}
+/* Parking report table ends */

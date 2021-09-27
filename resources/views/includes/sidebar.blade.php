@@ -155,18 +155,26 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('setting.edit')}}" class="nav-link">
-                        <i class="nav-icon fas fa-fw fa-cog"></i>
-                        <p>
-                            Setting
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a href="{{route('payment.index')}}" class="nav-link">
                         <i class="nav-icon fa fa-money-bill-alt"></i>
                         <p>
                             Payments
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('parking.report')}}" class="nav-link">
+                        <i class="nav-icon fa fa-info-circle"></i>
+                        <p>
+                            Parking Report
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('setting.edit')}}" class="nav-link">
+                        <i class="nav-icon fas fa-fw fa-cog"></i>
+                        <p>
+                            Setting
                         </p>
                     </a>
                 </li>

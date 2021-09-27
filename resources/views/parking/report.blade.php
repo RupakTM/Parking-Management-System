@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','Parking Management')
+@section('title','Report')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -10,12 +10,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Parking Management</h1>
+                        <h1>Parking Information</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Car List</li>
+                            <li class="breadcrumb-item active">Parking List</li>
                         </ol>
                     </div>
                 </div>
@@ -28,10 +28,6 @@
                 <div class="card-header">
                     <h3 class="card-title">
                         Parking List
-                        <a href="{{route('parking.create')}}" class="btn btn-success">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
-                            Add
-                        </a>
                     </h3>
 
                     <div class="card-tools">
@@ -50,39 +46,25 @@
                     @if(Session::has('error'))
                         <p class="alert alert-danger">{{ Session::get('error') }}</p>
                     @endif
-
-                    <table class="table table-bordered" style="margin-bottom: 10px;">
+                        <input class="form-control" id="search" type="text" placeholder="Search..">
+                        <br>
+                    <table class="table table-bordered" id="report_table">
                         <thead>
                         <tr>
                             <th>SN</th>
                             <th>Car Number</th>
-                            <th>Parking Slot No.</th>
-                            <th>Customer Name</th>
-                            <th>Entry Time</th>
-                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="data">
                         @forelse($data['rows'] as $i => $row)
                             <tr>
                                 <td>{{$i+1}}</td>
                                 <td>{{$row->car_no}}</td>
-                                <td>Slot {{$row->parking_slot_no}}</td>
-                                <td>{{$row->customer_name}}</td>
-                                <td>{{$row->entry_time}}</td>
                                 <td>
-                                    @if($row->status == 1)
-                                        <span class="text-success">IN</span>
-                                    @else
-                                        <span class="text-danger">OUT</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    <a href="{{route('parking.show',$row->id)}}" class="btn btn-info">
-                                        <i class="fa fa-eye" aria-hidden="true"></i> View</a>
-                                    <a href="{{route('parking.edit',$row->id)}}" class="btn btn-warning">
-                                        <i class="fas fa-edit" aria-hidden="true"></i> Edit</a>
+                                    <a href="{{route('parking.reportShow',$row->car_no)}}" class="btn btn-outline-dark">
+                                        View Details
+                                    </a>
                                 </td>
                             </tr>
                         @empty
@@ -92,9 +74,6 @@
                         @endforelse
                         </tbody>
                     </table>
-                    <span>
-                        {{$data['rows']->links()}}
-                    </span>
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -104,4 +83,17 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+@endsection
+
+@section('js')
+    <script>
+        $(document).ready(function(){
+            $("#search").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#data tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 @endsection
