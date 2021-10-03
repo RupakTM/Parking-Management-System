@@ -55,7 +55,10 @@
                         <label for="">To:</label>
                         <input type="datetime-local" name="date_to" id="date_to"/>
                         <input type="submit" class="btn btn-info" value="search"/>
-                        <a class="btn btn-primary text-white" id="printBtn">Print / PDF</a>
+                        <a class="btn btn-primary text-white" id="printBtn">
+                            <i class="fa fa-print" aria-hidden="true"></i>
+                            Print
+                        </a>
                     </form>
                     <table class="table table-bordered" name="payment_info" id="payment_info" style="margin-top: 25px;">
                         <thead>

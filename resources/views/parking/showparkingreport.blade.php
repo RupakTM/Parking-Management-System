@@ -107,7 +107,7 @@
                             @endif
                             </tbody>
                         </table>
-                        <a class="btn btn-secondary text-white" id="printBtn">
+                        <a class="btn btn-secondary text-white no-print" id="printBtn">
                             <i class="fa fa-print" aria-hidden="true"></i>
                             Print
                         </a>
