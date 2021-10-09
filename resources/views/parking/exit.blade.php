@@ -123,17 +123,6 @@
 @endsection
 @section('js')
     <script>
-
-        // $(document).ready(function (){
-        //     $('select').on('change', function() {
-        //         var value = this.value;
-        //         document.getElementsByName("car_id").id = value;
-        //         // alert(document.getElementsByName("car_id").id);
-        //     });
-        //
-        //
-        // });
-
         $(document).ready(function (){
             $('select').on('change', function() {
                 var value = this.value;
@@ -143,79 +132,5 @@
 
 
         });
-        // $(function(){
-        //     $(".form-control").on('change',function(e){
-        //         $("#yourFormId").attr("action","/search/the/" + $(this).val());
-        //     });
-        // });
-        //onsubmit
-        {{--function validateForm(form){--}}
-        {{--    // alert('Hello');--}}
-        {{--    var exit_id = document.getElementById("car_id").value;--}}
-        {{--    // alert(exit_id);--}}
-        {{--    var url = '{{ route("parking.update", ":id") }}';--}}
-        {{--    url = url.replace(':id',exit_id);--}}
-        {{--    // alert(url);--}}
-        {{--   form.action = url;--}}
-        {{--   // alert(form.action);--}}
-        {{--   // return false;--}}
-        {{--}--}}
-
-        //button onclick event
-        {{--function exitCar() {--}}
-        {{--   // alert('Hello');--}}
-        {{--    var exit_id = document.getElementById("car_id").value;--}}
-        {{--    // alert(exit_id);--}}
-        {{--    var url = '{{ route("parking.update", ":id") }}';--}}
-        {{--    url = url.replace(':id',exit_id);--}}
-        {{--    // alert(url);--}}
-        {{--    // var url = "http://www.(url).com";--}}
-        {{--    window.location.href=url;--}}
-        {{--}--}}
-
-        //url pass to form action
-        // $('#search').on('submit', function() {
-        //     var id = $('#demo').val();
-        //     var formAction = $('#search').attr('action');
-        //     $('#search').attr('action', formAction + id);
-        // });
-
-        // document.getElementById("exit").action = route('parking.update',id);
-        //document.getElementById('sky-form').action = 'second_02.html?pid=' + vpid;
-        // function validateForm() {
-        //     // alert('Validating form...');
-        //     var car_info = document.getElementById('car_no').value;
-        //     car_info = escape(car_info);
-        //     location.href = route('parking.update',car_info);
-        //     return false;
-        // }
-
-        {{--function validateForm(){--}}
-        {{--    var e = document.getElementById("car_id");--}}
-        {{--    var strUser = e.value;--}}
-        {{--    var action_src = "{!! route('parking.update','+strUser'); !!}";--}}
-        {{--    var exit = document.getElementById('exit');--}}
-        {{--    var url = '{{ route("parking.update", ":id") }}';--}}
-        {{--    url = url.replace(':id',product_id);--}}
-        {{--    exit.action = action_src ;--}}
-        {{--}--}}
-
-        {{--$('input[type=submit]').on('click', function(event){--}}
-        {{--    event.preventDefault();--}}
-        {{--    var e = document.getElementById("car_id");--}}
-        {{--    var id = e.value;--}}
-        {{--    // console.log(id);--}}
-        {{--    $('form').attr('action', "{{route('parking.update',"+id+")}}");--}}
-        {{--    $('form').submit();--}}
-        {{--});--}}
     </script>
-    {{--    <script>--}}
-    {{--        function exitForm() {--}}
-    {{--            alert('Validating form...');--}}
-    {{--            var c = document.getElementById('txtValue').value;--}}
-    {{--            text = escape(text);--}}
-    {{--            location.href = 'test.html?param=' + text;--}}
-    {{--            return false;--}}
-    {{--        }--}}
-    {{--    </script>--}}
 @endsection

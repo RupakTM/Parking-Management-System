@@ -29,7 +29,7 @@ class SettingRequest extends FormRequest
             'pan_no'=>'required',
             'reg_no' => 'required',
             'phone'=>'required|regex:/^(98)([0-9]{8})$/',
-            'price_per_hour' => 'required|numeric',
+            'price_per_hour' => 'required|numeric|min:0|not_in:0',
             'logo_file' => 'mimes:png,jpg|max:2048',
             'fav_file' => 'mimes:png,jpg|max:2048',
         ];
