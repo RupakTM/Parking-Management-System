@@ -188,24 +188,24 @@ class ParkingController extends Controller
             //check bill record
             if ($bill_record){
                 $bill = explode('-', $bill_record);
-
-                //check first day in a year
-                $Date = date("md");
-                if ($Date=="0101"){
-                    $InvoiceNumber = date('Y').'-0001';
-                } else {
+                $current_year = Carbon::now()->format('Y');
+                /*
+                If $bill_record = 2022-2122
+                $bill[0] represents $bill-record before '-' i.e, 2022
+                $bill[1] represents $bill-record after '-' lets say 2122
+                 */
+                //Compare current year with existing recorded bill year
+                if ($current_year == $bill[0]){
+                    //we are in same year
                     //increase 1 with last invoice number
                     $updated_digit = $bill[1] + 1;
                     $last_digit = substr(str_repeat(0, 4).$updated_digit, -4); //Add leading zero
                     $InvoiceNumber = $bill[0].'-'. $last_digit;
-                } //inner else ends
+                } else{
+                    //Happy New Year
+                    $InvoiceNumber = date('Y').'-0001';
+                }
             }//outer if ends
-            else{
-                //if it is first transaction
-                $InvoiceNumber = date('Y').'-0001';
-            } //outer else ends
-
-
             //Store Data To parking Table
             DB::table('parkings')
                 ->where('id',$car_id)
