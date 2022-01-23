@@ -29,7 +29,7 @@
                 @csrf
                 <div class="textbox">
                     <i class="fa fa-user"></i>
-                    <input type="text" name="email" id="email" placeholder="Email">
+                    <input type="text" name="email" id="email" placeholder="Email" value="{{old('email')}}">
                     @error('email')
                     <span class="text-danger" style="font-size: 18px;">
                     {{$errors->first('email')}}
