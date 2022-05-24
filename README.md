@@ -6,6 +6,19 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+# Vehicle Parking Management System
+Vehicle Parking Management System is a laravel Desktop based Parking Management System.
+
+## Installation
+
+Please follow following installation steps:
+
+- Clone project by SSH or HTTPS.
+- cp .env.example .env to copy .env.example file.
+- composer install
+- setup database connnection.
+- php artisan key:generate to generate APP_KEY.
+
 
 ## About Laravel
 
